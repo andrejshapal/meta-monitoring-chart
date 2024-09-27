@@ -14,4 +14,6 @@ data:
     {{ $.Files.Get "src/dashboards/loki-logs.json" | fromJson | toJson }}
   "loki-operational.json": |
     {{ $.Files.Get "src/dashboards/loki-operational.json" | fromJson | toJson }}
+  "loki-memcached.json": |
+    {{ $.Files.Get "src/dashboards/loki-memcached.json" | fromJson | toJson }}
 {{- end }}

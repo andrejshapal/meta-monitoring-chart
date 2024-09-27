@@ -275,6 +275,30 @@ metrics:
   - traces_receiver_accepted_spans
   - traces_receiver_refused_spans
   - up
+  - loki_memcached_request_duration_seconds_bucket
+  - loki_memcached_request_duration_seconds_count
+  - loki_memcached_request_duration_seconds_sum
+  - memcached_uptime_seconds
+  - memcached_up
+  - memcached_current_bytes
+  - memcached_limit_bytes
+  - memcached_commands_total
+  - memcached_items_evicted_total
+  - memcached_items_reclaimed_total
+  - memcached_accepting_connections
+  - memcached_connections_yielded_total
+  - memcached_connections_listener_disabled_total
+  - memcached_item_too_large_total
+  - memcached_item_no_memory_total
+  - memcached_version
+  - memcached_current_connections
+  - memcached_max_connections
+  - memcached_read_bytes_total
+  - memcached_written_bytes_total
+  - memcached_process_system_cpu_seconds_total
+  - memcached_process_user_cpu_seconds_total
+  - memcached_items_total
+  - memcached_current_items
   # Additional metrics to retain
   extraMetrics: []
 # Set enabled = true to add the default logs dashboards to the local Grafana
