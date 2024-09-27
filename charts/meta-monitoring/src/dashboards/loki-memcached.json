@@ -1843,7 +1843,7 @@
     ]
   },
   "timezone": "",
-  "title": "Memcached",
+  "title": "Loki / Memcached",
   "uid": "AQxf3X-mk",
   "version": 1,
   "weekStart": ""
