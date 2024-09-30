@@ -86,7 +86,7 @@ data:
           expressions = { 
             "start_delta" = "start_delta", 
             "total_bytes" = "total_bytes",
-            "component" = "component" 
+            "component" = "component",
           }
       }
 
