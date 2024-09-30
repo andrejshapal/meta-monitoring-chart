@@ -300,6 +300,7 @@ metrics:
   - memcached_process_user_cpu_seconds_total
   - memcached_items_total
   - memcached_current_items
+  - appsupport_requested_chunk_volume_over_time
   # Additional metrics to retain
   extraMetrics: []
 # Set enabled = true to add the default logs dashboards to the local Grafana
