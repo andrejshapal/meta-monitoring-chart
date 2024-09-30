@@ -120,6 +120,7 @@ data:
         stage.labels {
           values = {
             start_delta  = "",
+            start_delta_s = "",
             start_delta_h  = "",
             total_bytes = "",
             total_bytes_parsed = "",
