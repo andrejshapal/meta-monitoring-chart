@@ -128,6 +128,23 @@ data:
 
       stage.match {
         selector = "{component=\"querier\", start_delta_s!=\"0\", total_bytes_parsed!=\"0\"}"
+        stage.label_keep {
+            values = [ "component", "bucket", "pod", "cluster" ]
+        }
+        stage.metrics {
+          metric.counter {
+              name        = "requested_chunk_volume_over_time"
+              description = "Queries causes chunks being loaded from different sources. This metrics shows the breakdown of requested chunk sizes by periods"
+              prefix      = "appsupport_"
+              source      = "total_bytes_parsed"
+
+              action            = "add"
+              max_idle_duration = "24h"
+          }
+        }
+      }
+      stage.drop {
+          expression  = ".*"
       }
     }
     {{- end }}
