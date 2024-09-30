@@ -73,6 +73,7 @@ logs:
   - delete request for user added
   - Started processing delete request
   - delete request for user marked as processed
+  - start_delta
   # This shows the ingest requests and is very noisy. Uncomment to include.
   # - caller=push.go
   # Additional log lines to retain
