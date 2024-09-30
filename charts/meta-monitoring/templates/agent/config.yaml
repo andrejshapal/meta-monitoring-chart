@@ -120,7 +120,7 @@ data:
             total_bytes = "",
             total_bytes_parsed = "",
             component = "",
-            "bucket" = "",
+            bucket = "",
           }
         }
 
