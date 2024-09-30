@@ -113,6 +113,7 @@ data:
           total_bytes_parsed = "",
           component = "",
         }
+      }
 
       stage.match {
         selector = "{component=\"querier\", start_delta=~\".+\", total_bytes=~\".+\"}"
