@@ -112,10 +112,7 @@ data:
 
       stage.labels {
         values = {
-          start_delta  = "",
-          start_delta_h = "",
           start_delta_s = "",
-          total_bytes = "",
           total_bytes_parsed = "",
           component = "",
           bucket = "",
