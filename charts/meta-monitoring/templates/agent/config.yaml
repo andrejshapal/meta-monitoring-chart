@@ -77,6 +77,47 @@ data:
       {{- end }}
     }
     {{- end }}
+
+    {{- if .Values.logs.metrics }}
+    loki.process "metrics" {
+      forward_to = [ {{ include "agent.loki_write_targets" . }} ]
+
+      stage.json {
+          expressions = { 
+            "start_delta" = "start_delta", 
+            "total_bytes" = "total_bytes",
+            "component" = "component" 
+          }
+      }
+
+      stage.template {
+        source   = "start_delta_s"
+        template = `{{ sub (now | dateModify ".start_delta" | unixEpoch) (now | unixEpoch) | duration }}`"
+      }
+
+      stage.template {
+        source   = "start_delta_h"
+        template = `{{ div .start_delta_s 3600 }}`
+      }
+
+      stage.template {
+        source   = "total_bytes_parsed"
+        template = `{{- if hasSuffix .total_bytes "MB" -}}{{ mul (trimSuffix .total_bytes "MB" | float64) 1048576 -}}{{- else if hasSuffix .total_bytes "kB" -}}{{ mul (trimSuffix .total_bytes "kB" | float64) 1024 -}}{{- else if hasSuffix .total_bytes "B" -}}{{ trimSuffix .total_bytes "B" | int -}}{{- else -}}0{{- end -}}`
+      }
+
+      stage.match {
+        selector = "{component=\"querier\", start_delta=~\".+\", total_bytes=~\".+\", total_bytes!=\"0B\"}"
+        stage.labels {
+          values = {
+            start_delta  = "",
+            start_delta_h  = "",
+            total_bytes = "",
+            total_bytes_parsed = "",
+          }
+        }
+      }
+    }
+    {{- end }}
     {{- end }}
 
     {{- if or .Values.local.metrics.enabled .Values.cloud.metrics.enabled }}
