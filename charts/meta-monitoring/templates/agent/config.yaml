@@ -101,12 +101,19 @@ data:
       }
 
       stage.template {
+        source   = "bucket"
+        template = {{ printf "`" }}{{`    
+        {{- if lt .start_delta_h3 -}}<3h{{- else if lt .start_delta_h12 -}}<12h{{- else if lt .start_delta_h24 -}}<1d{{- else if lt .start_delta_h48 -}}<2d{{- else if lt .start_delta_h72 -}}<3d{{- else if lt .start_delta_h96 -}}<4d{{- else if lt .start_delta_h120 -}}<5d{{- else if lt .start_delta_h168 -}}<1w{{- else if lt .start_delta_h336 -}}<2w{{- else if lt .start_delta_h720 -}}<1mo{{- else -}}>1mo{{- end -}}
+        `}}{{ printf "`" }}
+      }
+
+      stage.template {
         source   = "total_bytes_parsed"
         template = {{ printf "`" }}{{`{{- if hasSuffix "MB" .total_bytes -}}{{ mul (trimSuffix "MB" .total_bytes | float64) 1048576 -}}{{- else if hasSuffix "kB" .total_bytes -}}{{ mul (trimSuffix "kB" .total_bytes | float64) 1024 -}}{{- else if hasSuffix "B" .total_bytes -}}{{ trimSuffix "B" .total_bytes | int -}}{{- else -}}0{{- end -}}`}}{{ printf "`" }}
       }
 
       stage.match {
-        selector = "{component=\"querier\", start_delta!="0", total_bytes!="0"}"
+        selector = "{component=\"querier\", start_delta_s!="0", total_bytes_parsed!="0"}"
         stage.labels {
           values = {
             start_delta  = "",
@@ -115,6 +122,7 @@ data:
             total_bytes = "",
             total_bytes_parsed = "",
             component = "",
+            "bucket" = "",
           }
         }
 
