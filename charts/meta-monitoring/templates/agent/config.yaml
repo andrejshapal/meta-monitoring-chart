@@ -102,9 +102,7 @@ data:
 
       stage.template {
         source   = "bucket"
-        template = {{ printf "`" }}{{`    
-        {{- if lt .start_delta_h3 -}}<3h{{- else if lt .start_delta_h12 -}}<12h{{- else if lt .start_delta_h24 -}}<1d{{- else if lt .start_delta_h48 -}}<2d{{- else if lt .start_delta_h72 -}}<3d{{- else if lt .start_delta_h96 -}}<4d{{- else if lt .start_delta_h120 -}}<5d{{- else if lt .start_delta_h168 -}}<1w{{- else if lt .start_delta_h336 -}}<2w{{- else if lt .start_delta_h720 -}}<1mo{{- else -}}>1mo{{- end -}}
-        `}}{{ printf "`" }}
+        template = {{ printf "`" }}{{`{{- if lt .start_delta_h3 -}}<3h{{- else if lt .start_delta_h12 -}}<12h{{- else if lt .start_delta_h24 -}}<1d{{- else if lt .start_delta_h48 -}}<2d{{- else if lt .start_delta_h72 -}}<3d{{- else if lt .start_delta_h96 -}}<4d{{- else if lt .start_delta_h120 -}}<5d{{- else if lt .start_delta_h168 -}}<1w{{- else if lt .start_delta_h336 -}}<2w{{- else if lt .start_delta_h720 -}}<1mo{{- else -}}>1mo{{- end -}}`}}{{ printf "`" }}
       }
 
       stage.template {
