@@ -113,6 +113,7 @@ data:
             start_delta_h  = "",
             total_bytes = "",
             total_bytes_parsed = "",
+            component = "",
           }
         }
       }
