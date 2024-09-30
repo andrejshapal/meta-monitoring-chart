@@ -102,7 +102,7 @@ data:
 
       stage.template {
         source   = "bucket"
-        template = {{ printf "`" }}{{`{{- if lt .start_delta_h 3 -}}<3h{{- else if lt .start_delta_h 12 -}}<12h{{- else if lt .start_delta_h 24 -}}<1d{{- else if lt .start_delta_h 48 -}}<2d{{- else if lt .start_delta_h 72 -}}<3d{{- else if lt .start_delta_h 96 -}}<4d{{- else if lt .start_delta_h 120 -}}<5d{{- else if lt .start_delta_h 168 -}}<1w{{- else if lt .start_delta_h 336 -}}<2w{{- else if lt .start_delta_h 720 -}}<1mo{{- else -}}>1mo{{- end -}}`}}{{ printf "`" }}
+        template = {{ printf "`" }}{{`{{- if lt (.start_delta_h | int) 3 -}}<3h{{- else if lt (.start_delta_h | int) 12 -}}<12h{{- else if lt (.start_delta_h | int) 24 -}}<1d{{- else if lt (.start_delta_h | int) 48 -}}<2d{{- else if lt (.start_delta_h | int) 72 -}}<3d{{- else if lt (.start_delta_h | int) 96 -}}<4d{{- else if lt (.start_delta_h | int) 120 -}}<5d{{- else if lt (.start_delta_h | int) 168 -}}<1w{{- else if lt (.start_delta_h | int) 336 -}}<2w{{- else if lt (.start_delta_h | int) 720 -}}<1mo{{- else -}}>1mo{{- end -}}`}}{{ printf "`" }}
       }
 
       stage.template {
