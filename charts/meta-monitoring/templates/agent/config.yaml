@@ -113,7 +113,7 @@ data:
       }
 
       stage.match {
-        selector = "{component=\"querier\", start_delta_s!="0", total_bytes_parsed!="0"}"
+        selector = "{component=\"querier\", start_delta_s!=\"0\", total_bytes_parsed!=\"0\"}"
         stage.labels {
           values = {
             start_delta  = "",
