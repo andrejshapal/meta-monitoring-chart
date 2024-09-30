@@ -102,7 +102,7 @@ data:
 
       stage.template {
         source   = "total_bytes_parsed"
-        template = {{ printf "`" }}{{`{{- if hasSuffix .total_bytes "MB" -}}{{ mul (trimSuffix .total_bytes "MB" | float64) 1048576 -}}{{- else if hasSuffix .total_bytes "kB" -}}{{ mul (trimSuffix .total_bytes "kB" | float64) 1024 -}}{{- else if hasSuffix .total_bytes "B" -}}{{ trimSuffix .total_bytes "B" | int -}}{{- else -}}0{{- end -}}`}}{{ printf "`" }}
+        template = {{ printf "`" }}{{`{{- if hasSuffix "MB" .total_bytes -}}{{ mul (trimSuffix "MB" .total_bytes | float64) 1048576 -}}{{- else if hasSuffix "kB" .total_bytes -}}{{ mul (trimSuffix "kB" .total_bytes | float64) 1024 -}}{{- else if hasSuffix "B" .total_bytes -}}{{ trimSuffix "B" .total_bytes | int -}}{{- else -}}0{{- end -}}`}}{{ printf "`" }}
       }
 
       stage.labels {
