@@ -92,7 +92,7 @@ data:
 
       stage.template {
         source   = "start_delta_s"
-        template = {{ printf "`" }}{{`{{ sub (now | dateModify ".start_delta" | unixEpoch) (now | unixEpoch) | duration }}`}}{{ printf "`" }}
+        template = {{ printf "`" }}{{`{{ sub (now | dateModify .start_delta | unixEpoch) (now | unixEpoch) }}`}}{{ printf "`" }}
       }
 
       stage.template {
