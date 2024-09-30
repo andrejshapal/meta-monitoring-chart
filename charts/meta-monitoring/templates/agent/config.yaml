@@ -131,7 +131,7 @@ data:
           metric.counter {
               name        = "requested_chunk_volume_over_time"
               description = "Queries causes chunks being loaded from different sources. This metrics shows the breakdown of requested chunk sizes by periods"
-              prefix      = "appsupport_"
+              prefix      = "loki_"
               source      = "total_bytes_parsed"
 
               action            = "add"
