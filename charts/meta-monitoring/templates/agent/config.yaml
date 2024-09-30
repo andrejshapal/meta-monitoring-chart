@@ -92,17 +92,17 @@ data:
 
       stage.template {
         source   = "start_delta_s"
-        template = `{{ sub (now | dateModify ".start_delta" | unixEpoch) (now | unixEpoch) | duration }}`"
+        template = {{ printf "`" }}{{`{{ sub (now | dateModify ".start_delta" | unixEpoch) (now | unixEpoch) | duration }}`}}{{ printf "`" }}
       }
 
       stage.template {
         source   = "start_delta_h"
-        template = `{{ div .start_delta_s 3600 }}`
+        template = {{ printf "`" }}{{`{{ div .start_delta_s 3600 }}`}}{{ printf "`" }}
       }
 
       stage.template {
         source   = "total_bytes_parsed"
-        template = `{{- if hasSuffix .total_bytes "MB" -}}{{ mul (trimSuffix .total_bytes "MB" | float64) 1048576 -}}{{- else if hasSuffix .total_bytes "kB" -}}{{ mul (trimSuffix .total_bytes "kB" | float64) 1024 -}}{{- else if hasSuffix .total_bytes "B" -}}{{ trimSuffix .total_bytes "B" | int -}}{{- else -}}0{{- end -}}`
+        template = {{ printf "`" }}{{`{{- if hasSuffix .total_bytes "MB" -}}{{ mul (trimSuffix .total_bytes "MB" | float64) 1048576 -}}{{- else if hasSuffix .total_bytes "kB" -}}{{ mul (trimSuffix .total_bytes "kB" | float64) 1024 -}}{{- else if hasSuffix .total_bytes "B" -}}{{ trimSuffix .total_bytes "B" | int -}}{{- else -}}0{{- end -}}`}}{{ printf "`" }}
       }
 
       stage.match {
