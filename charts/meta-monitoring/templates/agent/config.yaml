@@ -110,8 +110,6 @@ data:
         template = {{ printf "`" }}{{`{{- if hasSuffix "MB" .total_bytes -}}{{ mul (trimSuffix "MB" .total_bytes | float64) 1048576 -}}{{- else if hasSuffix "kB" .total_bytes -}}{{ mul (trimSuffix "kB" .total_bytes | float64) 1024 -}}{{- else if hasSuffix "B" .total_bytes -}}{{ trimSuffix "B" .total_bytes | int -}}{{- else -}}0{{- end -}}`}}{{ printf "`" }}
       }
 
-      stage.match {
-        selector = "{component=\"querier\", start_delta_s!=\"0\", total_bytes_parsed!=\"0\"}"
         stage.labels {
           values = {
             start_delta  = "",
@@ -124,6 +122,8 @@ data:
           }
         }
 
+      stage.match {
+        selector = "{component=\"querier\", start_delta_s!=\"0\", total_bytes_parsed!=\"0\"}"
         stage.pack {
           labels = ["start_delta", "start_delta_h", "total_bytes", "total_bytes_parsed", "start_delta_s"]
         }
