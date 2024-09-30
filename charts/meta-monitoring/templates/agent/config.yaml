@@ -121,9 +121,10 @@ data:
 
       stage.match {
         selector = "{component=\"querier\", start_delta_s!=\"0\", total_bytes_parsed!=\"0\"}"
-        stage.label_keep {
-            values = [ "component", "bucket", "pod", "cluster", "namespace" ]
+        stage.label_drop {
+            values = [ "start_delta_s", "total_bytes_parsed" ]
         }
+
         stage.metrics {
           metric.counter {
               name        = "requested_chunk_volume_over_time"
