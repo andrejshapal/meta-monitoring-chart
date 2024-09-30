@@ -122,11 +122,12 @@ data:
           }
         }
 
-      stage.match {
-        selector = "{component=\"querier\", start_delta_s!=\"0\", total_bytes_parsed!=\"0\"}"
         stage.pack {
           labels = ["start_delta", "start_delta_h ", "total_bytes", "total_bytes_parsed", "start_delta_s"]
         }
+
+      stage.match {
+        selector = "{component=\"querier\", start_delta_s!=\"0\", total_bytes_parsed!=\"0\"}"
       }
     }
     {{- end }}
