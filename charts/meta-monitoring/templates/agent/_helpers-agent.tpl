@@ -37,9 +37,9 @@
 
 {{- define "agent.loki_process_targets" -}}
 {{- if and (empty .Values.logs.piiRegexes) (empty .Values.logs.retain) }}
-{{- include "agent.loki_write_targets" . }}
+{{- include "agent.loki_write_targets" . }}{{- printf ", loki.process.metrics.receiver" }}
 {{- else }}
-{{- printf "loki.process.filter.receiver" }}
+{{- printf "loki.process.filter.receiver, loki.process.metrics.receiver" }}
 {{- end }}
 {{- end }}
 
