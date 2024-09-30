@@ -96,7 +96,7 @@ data:
       }
 
       stage.template {
-        source   = "start_delta_h "
+        source   = "start_delta_h"
         template = {{ printf "`" }}{{`{{ div .start_delta_s 3600 }}`}}{{ printf "`" }}
       }
 
