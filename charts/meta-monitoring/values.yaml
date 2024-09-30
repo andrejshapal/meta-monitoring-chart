@@ -77,6 +77,7 @@ logs:
   # - caller=push.go
   # Additional log lines to retain
   extraLogs: []
+  metrics: true
 metrics:
   # The list of metrics to retain for logging dashboards
   retain:
