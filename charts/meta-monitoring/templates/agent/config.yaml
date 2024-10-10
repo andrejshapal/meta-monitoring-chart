@@ -179,6 +179,10 @@ data:
       stage.match {
         selector = "{component=\"querier\", cache_chunk_req!=\"0\"}"
 
+        stage.label_drop {
+            values = [ "cache_chunk_req", "cache_chunk_hit"]
+        }
+
         stage.metrics {
           metric.counter {
               name        = "cache_chunk_req_over_time"
