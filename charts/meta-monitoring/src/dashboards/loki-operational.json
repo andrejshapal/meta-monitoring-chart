@@ -4784,7 +4784,7 @@
           "refId": ">1mo"
         }
       ],
-      "title": "Chunk Volume Distribution by Cumulative Buckets",
+      "title": "Chunk Cache Hit Ratio by Cumulative Buckets",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -6533,7 +6533,6 @@
       "type": "row"
     }
   ],
-  "refresh": "",
   "schemaVersion": 39,
   "tags": [
     "loki"
@@ -6632,8 +6631,8 @@
     ]
   },
   "time": {
-    "from": "now-7d",
-    "to": "now"
+    "from": "2024-10-05T00:00:00.000Z",
+    "to": "2024-10-05T23:59:59.000Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -6663,6 +6662,6 @@
   "timezone": "utc",
   "title": "Loki / Operational",
   "uid": "operational",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }
