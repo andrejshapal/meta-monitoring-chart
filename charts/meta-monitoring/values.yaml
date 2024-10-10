@@ -301,6 +301,8 @@ metrics:
   - memcached_items_total
   - memcached_current_items
   - loki_requested_chunk_volume_over_time
+  - loki_cache_chunk_req_over_time
+  - loki_cache_chunk_hit_over_time
   # Additional metrics to retain
   extraMetrics: []
 # Set enabled = true to add the default logs dashboards to the local Grafana
