@@ -100,8 +100,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -249,8 +248,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -396,8 +394,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -543,8 +540,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -693,8 +689,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -842,8 +837,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1008,8 +1002,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1174,8 +1167,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1326,8 +1318,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1494,8 +1485,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1646,8 +1636,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1814,8 +1803,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1980,8 +1968,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4578,6 +4565,238 @@
       "type": "bargauge"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "decimals": 2,
+          "fieldMinMax": true,
+          "mappings": [],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 31
+      },
+      "id": 121,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<3h\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "<3h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<12h\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<12h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<1d\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<1d"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<2d\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<2d"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<3d\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<3d"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<4d\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<4d"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<5d\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<5d"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<1w\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<1w"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<2w\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<2w"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<1mo\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<1mo"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\">1mo\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": ">1mo"
+        }
+      ],
+      "title": "Chunk Volume Distribution by Cumulative Buckets",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "Value #(.*)",
+            "renamePattern": "$1"
+          }
+        }
+      ],
+      "type": "bargauge"
+    },
+    {
       "collapsed": true,
       "datasource": {
         "type": "datasource",
@@ -4587,7 +4806,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 31
+        "y": 39
       },
       "id": 64,
       "panels": [
@@ -4992,7 +5211,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 32
+        "y": 40
       },
       "id": 52,
       "panels": [
@@ -5214,7 +5433,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 33
+        "y": 41
       },
       "id": 57,
       "panels": [
@@ -5441,7 +5660,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 34
+        "y": 42
       },
       "id": 60,
       "panels": [
@@ -5663,7 +5882,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 35
+        "y": 43
       },
       "id": 78,
       "panels": [
@@ -5883,7 +6102,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 36
+        "y": 44
       },
       "id": 117,
       "panels": [
@@ -6103,7 +6322,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 37
+        "y": 45
       },
       "id": 114,
       "panels": [
@@ -6314,7 +6533,7 @@
       "type": "row"
     }
   ],
-  "refresh": "10s",
+  "refresh": "",
   "schemaVersion": 39,
   "tags": [
     "loki"
@@ -6385,7 +6604,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "logging",
           "value": "logging"
         },
@@ -6413,7 +6632,7 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-7d",
     "to": "now"
   },
   "timepicker": {
@@ -6444,6 +6663,6 @@
   "timezone": "utc",
   "title": "Loki / Operational",
   "uid": "operational",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
