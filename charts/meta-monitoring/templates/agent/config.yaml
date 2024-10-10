@@ -116,13 +116,13 @@ data:
       }
 
       stage.template {
-        source   = " ingester_chunk_decompressed_bytes_parsed"
-        template = {{ printf "`" }}{{`{{- if hasSuffix "MB" . ingester_chunk_decompressed_bytes -}}{{ mul (trimSuffix "MB" . ingester_chunk_decompressed_bytes | float64) 1048576 -}}{{- else if hasSuffix "kB" . ingester_chunk_decompressed_bytes -}}{{ mul (trimSuffix "kB" . ingester_chunk_decompressed_bytes | float64) 1024 -}}{{- else if hasSuffix "B" . ingester_chunk_decompressed_bytes -}}{{ trimSuffix "B" . ingester_chunk_decompressed_bytes | int -}}{{- else -}}0{{- end -}}`}}{{ printf "`" }}
+        source   = "ingester_chunk_decompressed_bytes_parsed"
+        template = {{ printf "`" }}{{`{{- if hasSuffix "MB" .ingester_chunk_decompressed_bytes -}}{{ mul (trimSuffix "MB" .ingester_chunk_decompressed_bytes | float64) 1048576 -}}{{- else if hasSuffix "kB" .ingester_chunk_decompressed_bytes -}}{{ mul (trimSuffix "kB" .ingester_chunk_decompressed_bytes | float64) 1024 -}}{{- else if hasSuffix "B" .ingester_chunk_decompressed_bytes -}}{{ trimSuffix "B" .ingester_chunk_decompressed_bytes | int -}}{{- else -}}0{{- end -}}`}}{{ printf "`" }}
       }
 
       stage.template {
-        source   = " ingester_chunk_head_bytes_parsed"
-        template = {{ printf "`" }}{{`{{- if hasSuffix "MB" . ingester_chunk_head_bytes -}}{{ mul (trimSuffix "MB" . ingester_chunk_head_bytes | float64) 1048576 -}}{{- else if hasSuffix "kB" . ingester_chunk_head_bytes -}}{{ mul (trimSuffix "kB" . ingester_chunk_head_bytes | float64) 1024 -}}{{- else if hasSuffix "B" . ingester_chunk_head_bytes -}}{{ trimSuffix "B" . ingester_chunk_head_bytes | int -}}{{- else -}}0{{- end -}}`}}{{ printf "`" }}
+        source   = "ingester_chunk_head_bytes_parsed"
+        template = {{ printf "`" }}{{`{{- if hasSuffix "MB" .ingester_chunk_head_bytes -}}{{ mul (trimSuffix "MB" .ingester_chunk_head_bytes | float64) 1048576 -}}{{- else if hasSuffix "kB" .ingester_chunk_head_bytes -}}{{ mul (trimSuffix "kB" .ingester_chunk_head_bytes | float64) 1024 -}}{{- else if hasSuffix "B" .ingester_chunk_head_bytes -}}{{ trimSuffix "B" .ingester_chunk_head_bytes | int -}}{{- else -}}0{{- end -}}`}}{{ printf "`" }}
       }
 
       stage.labels {
