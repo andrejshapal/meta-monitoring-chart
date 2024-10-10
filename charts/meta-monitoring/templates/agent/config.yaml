@@ -87,6 +87,8 @@ data:
             "start_delta" = "start_delta", 
             "total_bytes" = "total_bytes",
             "component" = "component",
+            "cache_chunk_hit" = "cache_chunk_hit",
+            "cache_chunk_req" = "cache_chunk_req",
           }
       }
 
