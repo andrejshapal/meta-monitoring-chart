@@ -195,7 +195,7 @@ data:
         stage.metrics {
           metric.counter {
               name        = "ingester_chunk_decompressed_bytes_fetched"
-              description = "Total size of chunks was fetched from all sources"
+              description = "Total size of chunks was fetched from ingester"
               prefix      = "loki_"
               source      = "ingester_chunk_decompressed_bytes_parsed"
 
@@ -207,7 +207,7 @@ data:
         stage.metrics {
           metric.counter {
               name        = "ingester_chunk_head_bytes_fetched"
-              description = "Total size of chunks was fetched from all sources"
+              description = "Total size of chunks was fetched from ingester"
               prefix      = "loki_"
               source      = "ingester_chunk_head_bytes_parsed"
 
