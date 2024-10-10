@@ -152,7 +152,7 @@ data:
           }
         }
 
-        
+      stage.metrics {
         metric.counter {
               name        = "cache_chunk_req_over_time"
               description = "Should help to calculate hit/req ratio per chunks over age"
@@ -227,7 +227,6 @@ data:
               max_idle_duration = "24h"
           }
         }
-
       }
 
       stage.drop {
