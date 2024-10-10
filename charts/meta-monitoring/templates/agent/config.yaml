@@ -89,6 +89,9 @@ data:
             "component" = "component",
             "cache_chunk_hit" = "cache_chunk_hit",
             "cache_chunk_req" = "cache_chunk_req",
+            "cache_chunk_bytes_fetched" = "cache_chunk_bytes_fetched",
+            "ingester_chunk_decompressed_bytes" = "ingester_chunk_decompressed_bytes",
+            "ingester_chunk_head_bytes" = "ingester_chunk_head_bytes",
           }
       }
 
@@ -110,6 +113,16 @@ data:
       stage.template {
         source   = "total_bytes_parsed"
         template = {{ printf "`" }}{{`{{- if hasSuffix "MB" .total_bytes -}}{{ mul (trimSuffix "MB" .total_bytes | float64) 1048576 -}}{{- else if hasSuffix "kB" .total_bytes -}}{{ mul (trimSuffix "kB" .total_bytes | float64) 1024 -}}{{- else if hasSuffix "B" .total_bytes -}}{{ trimSuffix "B" .total_bytes | int -}}{{- else -}}0{{- end -}}`}}{{ printf "`" }}
+      }
+
+      stage.template {
+        source   = " ingester_chunk_decompressed_bytes_parsed"
+        template = {{ printf "`" }}{{`{{- if hasSuffix "MB" . ingester_chunk_decompressed_bytes -}}{{ mul (trimSuffix "MB" . ingester_chunk_decompressed_bytes | float64) 1048576 -}}{{- else if hasSuffix "kB" . ingester_chunk_decompressed_bytes -}}{{ mul (trimSuffix "kB" . ingester_chunk_decompressed_bytes | float64) 1024 -}}{{- else if hasSuffix "B" . ingester_chunk_decompressed_bytes -}}{{ trimSuffix "B" . ingester_chunk_decompressed_bytes | int -}}{{- else -}}0{{- end -}}`}}{{ printf "`" }}
+      }
+
+      stage.template {
+        source   = " ingester_chunk_head_bytes_parsed"
+        template = {{ printf "`" }}{{`{{- if hasSuffix "MB" . ingester_chunk_head_bytes -}}{{ mul (trimSuffix "MB" . ingester_chunk_head_bytes | float64) 1048576 -}}{{- else if hasSuffix "kB" . ingester_chunk_head_bytes -}}{{ mul (trimSuffix "kB" . ingester_chunk_head_bytes | float64) 1024 -}}{{- else if hasSuffix "B" . ingester_chunk_head_bytes -}}{{ trimSuffix "B" . ingester_chunk_head_bytes | int -}}{{- else -}}0{{- end -}}`}}{{ printf "`" }}
       }
 
       stage.labels {
@@ -138,21 +151,17 @@ data:
               max_idle_duration = "24h"
           }
         }
-      }
 
-      stage.labels {
-        values = {
-          cache_chunk_hit = "",
-          cache_chunk_req = "",
-          component = "",
-          bucket = "",
-        }
-      }
+        
+        metric.counter {
+              name        = "cache_chunk_req_over_time"
+              description = "Should help to calculate hit/req ratio per chunks over age"
+              prefix      = "loki_"
+              source      = "cache_chunk_req"
 
-      stage.match {
-        selector = "{component=\"querier\", cache_chunk_req!=\"0\"}"
-        stage.label_drop {
-            values = [ "cache_chunk_req", "cache_chunk_hit"]
+              action            = "add"
+              max_idle_duration = "24h"
+          }
         }
 
         stage.metrics {
@@ -166,34 +175,59 @@ data:
               max_idle_duration = "24h"
           }
         }
-      }
-
-      stage.labels {
-        values = {
-          cache_chunk_req = "",
-          component = "",
-          bucket = "",
-        }
-      }
-
-      stage.match {
-        selector = "{component=\"querier\", cache_chunk_req!=\"0\"}"
 
         stage.label_drop {
-            values = [ "cache_chunk_req", "cache_chunk_hit"]
+            values = [ "bucket" ]
         }
 
         stage.metrics {
           metric.counter {
-              name        = "cache_chunk_req_over_time"
-              description = "Should help to calculate hit/req ratio per chunks over age"
+              name        = "total_bytes_fetched"
+              description = "Total size of chunks was fetched from all sources"
               prefix      = "loki_"
-              source      = "cache_chunk_req"
+              source      = "total_bytes_parsed"
 
               action            = "add"
               max_idle_duration = "24h"
           }
         }
+
+        stage.metrics {
+          metric.counter {
+              name        = "ingester_chunk_decompressed_bytes_fetched"
+              description = "Total size of chunks was fetched from all sources"
+              prefix      = "loki_"
+              source      = "ingester_chunk_decompressed_bytes_parsed"
+
+              action            = "add"
+              max_idle_duration = "24h"
+          }
+        }
+
+        stage.metrics {
+          metric.counter {
+              name        = "ingester_chunk_head_bytes_fetched"
+              description = "Total size of chunks was fetched from all sources"
+              prefix      = "loki_"
+              source      = "ingester_chunk_head_bytes_parsed"
+
+              action            = "add"
+              max_idle_duration = "24h"
+          }
+        }
+
+        stage.metrics {
+          metric.counter {
+              name        = "cache_chunk_bytes_fetched"
+              description = "Total size of chunks was fetched from chunk cache"
+              prefix      = "loki_"
+              source      = "cache_chunk_bytes_fetched"
+
+              action            = "add"
+              max_idle_duration = "24h"
+          }
+        }
+
       }
 
       stage.drop {
