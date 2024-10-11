@@ -303,6 +303,10 @@ metrics:
   - loki_requested_chunk_volume_over_time
   - loki_cache_chunk_req_over_time
   - loki_cache_chunk_hit_over_time
+  - loki_total_bytes_fetched
+  - loki_ingester_chunk_decompressed_bytes_fetched
+  - loki_ingester_chunk_head_bytes_fetched
+  - loki_cache_chunk_bytes_fetched
   # Additional metrics to retain
   extraMetrics: []
 # Set enabled = true to add the default logs dashboards to the local Grafana
