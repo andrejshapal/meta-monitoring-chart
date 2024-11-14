@@ -49,9 +49,11 @@ spec:
             - containerPort: 7946
               name: memberlist
               protocol: TCP
+          {{- if .Values.local.minio.enabled }}
           envFrom:
           - secretRef:
              name: minio
+          {{- end }}
           readinessProbe:
             failureThreshold: 3
             httpGet:
