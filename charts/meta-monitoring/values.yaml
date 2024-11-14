@@ -451,10 +451,6 @@ mimir-distributed:
             insecure: true
       limits:
         compactor_blocks_retention_period: 30d
-    gateway:
-      nginx:
-        config:
-          resolver: rke2-coredns-rke2-coredns.kube-system.svc.cluster.local
 tempo-distributed:
   tempo:
     structuredConfig:
