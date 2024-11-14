@@ -1,7 +1,3 @@
-# {{- if not (eq .Values.local.minio.enabled (or .Values.local.traces.enabled (or .Values.local.logs.enabled .Values.local.metrics.enabled))) -}}
-#   {{- fail "minio.enabled should be set to true if any of the the local databases is enabled " -}}
-# {{- end -}}
-
 {{- if eq .Values.cloud.logs.enabled true -}}
   {{- if empty .Values.cloud.logs.secret -}}
     {{- fail "if cloud.logs is enabled then the secret has to be filled in" -}}
