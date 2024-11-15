@@ -70,6 +70,9 @@ data:
         jsonData:
           # Scrape interval
           timeInterval: 1m
+          httpHeaderName1: X-Scope-OrgID
+        secureJsonData:
+          httpHeaderValue1: anonymous
       {{- end }}
       {{- if .Values.local.traces.enabled }}
       - name: Tempo
