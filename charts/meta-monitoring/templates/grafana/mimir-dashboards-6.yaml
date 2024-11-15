@@ -1,0 +1,13 @@
+{{- if and .Values.local.grafana.enabled .Values.dashboards.mimir.enabled }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mimir-dashboards-6
+  namespace: {{ $.Release.Namespace }}
+data:
+  "mimir-writes.json": |
+    {{ $.Files.Get "src/dashboards/mimir/mimir-writes.json" | fromJson | toJson }}
+  "mimir-compactor-resources.json": |
+    {{ $.Files.Get "src/dashboards/mimir/mimir-compactor-resources.json" | fromJson | toJson }}
+{{- end }}
