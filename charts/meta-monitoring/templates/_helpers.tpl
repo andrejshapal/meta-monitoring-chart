@@ -52,6 +52,7 @@ grafana.ini: |
 {{- end }}
 {{- range $key, $value := index .Values.grafana "config" }}
   {{- if kindIs "map" $value }}
+
   [{{ $key }}]
   {{- range $elem, $elemVal := $value }}
   {{- if kindIs "invalid" $elemVal }}
@@ -65,6 +66,5 @@ grafana.ini: |
   {{- end }}
   {{- end }}
   {{- end }}
-
 {{- end }}
 {{- end }}
