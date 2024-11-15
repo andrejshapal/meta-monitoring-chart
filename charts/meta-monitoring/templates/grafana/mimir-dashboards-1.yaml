@@ -7,7 +7,7 @@ metadata:
   namespace: {{ $.Release.Namespace }}
 data:
   "mimir-alertmanager-resources.json": |
-    {{ $.Files.Get "src/dashboards/alloy-cluster-node.json" | fromJson | toJson }}
+    {{ $.Files.Get "src/dashboards/mimir/mimir-alertmanager-resources.json" | fromJson | toJson }}
   "mimir-config.json": |
     {{ $.Files.Get "src/dashboards/mimir/mimir-config.json" | fromJson | toJson }}
   "mimir-overview-resources.json": |
