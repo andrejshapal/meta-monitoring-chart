@@ -28,7 +28,7 @@ local:
   minio:
     enabled: false # This should be set to true if any of the previous is enabled
 grafana:
-  version: 11.2.1
+  version: 10.4.2
   # Gateway ingress configuration
   ingress:
     # -- Specifies whether an ingress for the gateway should be created
