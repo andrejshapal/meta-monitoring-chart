@@ -28,6 +28,66 @@ data:
         orgId: 1
         type: file
 {{- end }}
+{{- if .Values.dashboards.mimir.enabled }}
+      - disableDeletion: true
+        editable: false
+        folder: Mimir
+        name: mimir-1
+        options:
+          path: /var/lib/grafana/dashboards/mimir-1
+        orgId: 1
+        type: file
+      - disableDeletion: true
+        editable: false
+        folder: Mimir
+        name: mimir-2
+        options:
+          path: /var/lib/grafana/dashboards/mimir-2
+        orgId: 1
+        type: file
+      - disableDeletion: true
+        editable: false
+        folder: Mimir
+        name: mimir-3
+        options:
+          path: /var/lib/grafana/dashboards/mimir-3
+        orgId: 1
+        type: file
+      - disableDeletion: true
+        editable: false
+        folder: Mimir
+        name: mimir-4
+        options:
+          path: /var/lib/grafana/dashboards/mimir-4
+        orgId: 1
+        type: file
+      - disableDeletion: true
+        editable: false
+        folder: Mimir
+        name: mimir-5
+        options:
+          path: /var/lib/grafana/dashboards/mimir-5
+        orgId: 1
+        type: file
+      - disableDeletion: true
+        editable: false
+        folder: Mimir
+        name: mimir-6
+        options:
+          path: /var/lib/grafana/dashboards/mimir-6
+        orgId: 1
+        type: file
+{{- end }}
+{{- if .Values.dashboards.victoriametrics.enabled }}
+      - disableDeletion: true
+        editable: false
+        folder: Victoria Metrics
+        name: victoriametrics
+        options:
+          path: /var/lib/grafana/dashboards/victoriametrics
+        orgId: 1
+        type: file
+{{- end }}
       - disableDeletion: true
         editable: false
         folder: Alloy
