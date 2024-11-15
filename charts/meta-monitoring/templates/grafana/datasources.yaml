@@ -55,7 +55,7 @@ data:
         # port.
         {{ $mimirDistributed := index .Values "mimir-distributed" }}
         {{- if (($mimirDistributed).gateway).enabledNonEnterprise }}
-        url: http://{{- $.Release.Name -}}-mimir-gateway.{{- $.Release.Namespace -}}.svc:80/prometheus
+        url: http://{{- $.Release.Name -}}-mimir-query-frontend.{{- $.Release.Namespace -}}.svc:8080/prometheus
         {{- else }}
         url: http://{{- $.Release.Name -}}-mimir-nginx.{{- $.Release.Namespace -}}.svc:80/prometheus
         {{- end }}
