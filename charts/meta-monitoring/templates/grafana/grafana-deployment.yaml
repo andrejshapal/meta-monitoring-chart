@@ -67,6 +67,24 @@ spec:
             - mountPath: /var/lib/grafana/dashboards/loki-2
               name: loki-dashboards-2
             {{- end }}
+            {{- if .Values.dashboards.mimir.enabled }}
+            - mountPath: /var/lib/grafana/dashboards/mimir-1
+              name: mimir-dashboards-1
+            - mountPath: /var/lib/grafana/dashboards/mimir-2
+              name: mimir-dashboards-2
+            - mountPath: /var/lib/grafana/dashboards/mimir-3
+              name: mimir-dashboards-3
+            - mountPath: /var/lib/grafana/dashboards/mimir-4
+              name: mimir-dashboards-4
+            - mountPath: /var/lib/grafana/dashboards/mimir-5
+              name: mimir-dashboards-5
+            - mountPath: /var/lib/grafana/dashboards/mimir-6
+              name: mimir-dashboards-6
+            {{- end }}
+            {{- if .Values.dashboards.victoriametrics.enabled }}
+            - mountPath: /var/lib/grafana/dashboards/victoriametrics
+              name: victoriametrics-dashboards
+            {{- end }}
             - mountPath: /var/lib/grafana/dashboards/alloy-1
               name: alloy-dashboards-1
             {{- if .Values.grafana.config }}
@@ -90,6 +108,31 @@ spec:
         - name: loki-dashboards-2
           configMap:
             name: loki-dashboards-2
+        {{- end }}
+        {{- if .Values.dashboards.mimir.enabled }}
+        - name: mimir-dashboards-1
+          configMap:
+            name: mimir-dashboards-1
+        - name: mimir-dashboards-2
+          configMap:
+            name: mimir-dashboards-2
+        - name: mimir-dashboards-3
+          configMap:
+            name: mimir-dashboards-3
+        - name: mimir-dashboards-4
+          configMap:
+            name: mimir-dashboards-4
+        - name: mimir-dashboards-5
+          configMap:
+            name: mimir-dashboards-5
+        - name: mimir-dashboards-6
+          configMap:
+            name: mimir-dashboards-6
+        {{- end }}
+        {{- if .Values.dashboards.victoriametrics.enabled }}
+        - name: victoriametrics-dashboards
+          configMap:
+            name: victoriametrics-dashboards
         {{- end }}
         - name: alloy-dashboards-1
           configMap:
