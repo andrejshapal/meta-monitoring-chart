@@ -314,6 +314,8 @@ metrics:
 dashboards:
   logs:
     enabled: true
+  mimir:
+    enabled: false
 kubeStateMetrics:
   # Scrape https://github.com/kubernetes/kube-state-metrics by default
   enabled: true

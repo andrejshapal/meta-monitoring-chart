@@ -7,4 +7,4 @@ metadata:
     app: grafana
 data:
   {{- include "grafana.configData" . | nindent 2 }}
-{{- end }}∏
+{{- end }}

@@ -53,7 +53,12 @@ data:
         uid: mimir_ds
         # <string> Sets the data source's URL, including the
         # port.
+        {{ $mimirDistributed := index .Values "mimir-distributed" }}
+        {{- if (($mimirDistributed).gateway).enabledNonEnterprise }}
+        url: http://{{- $.Release.Name -}}-mimir-gateway.{{- $.Release.Namespace -}}.svc:80/prometheus
+        {{- else }}
         url: http://{{- $.Release.Name -}}-mimir-nginx.{{- $.Release.Namespace -}}.svc:80/prometheus
+        {{- end }}
         # <bool> Toggles whether the data source is pre-selected
         # for new panels. You can set only one default
         # data source per organization.
