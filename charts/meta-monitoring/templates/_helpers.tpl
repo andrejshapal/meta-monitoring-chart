@@ -65,5 +65,6 @@ grafana.ini: |
   {{- end }}
   {{- end }}
   {{- end }}
+
 {{- end }}
 {{- end }}
