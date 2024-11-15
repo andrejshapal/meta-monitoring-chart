@@ -1,0 +1,19 @@
+{{- if and .Values.local.grafana.enabled .Values.dashboards.mimir.enabled }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mimir-dashboards-4
+  namespace: {{ $.Release.Namespace }}
+data:
+  "mimir-overrides.json": |
+    {{ $.Files.Get "src/dashboards/mimir/mimir-overrides.json" | fromJson | toJson }}
+  "mimir-queries.json": |
+    {{ $.Files.Get "src/dashboards/mimir/mimir-queries.json" | fromJson | toJson }}
+  "mimir-remote-ruler-reads-networking.json": |
+    {{ $.Files.Get "src/dashboards/mimir/mimir-remote-ruler-reads-networking.json" | fromJson | toJson }}
+  "mimir-ruler.json": |
+    {{ $.Files.Get "src/dashboards/mimir/mimir-ruler.json" | fromJson | toJson }}
+  "mimir-top-tenants.json": |
+    {{ $.Files.Get "src/dashboards/mimir/mimir-top-tenants.json" | fromJson | toJson }}
+{{- end }}

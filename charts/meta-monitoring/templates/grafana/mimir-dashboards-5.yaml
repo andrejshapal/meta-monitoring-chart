@@ -1,0 +1,21 @@
+{{- if and .Values.local.grafana.enabled .Values.dashboards.mimir.enabled }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mimir-dashboards-5
+  namespace: {{ $.Release.Namespace }}
+data:
+  "mimir-compactor.json": |
+    {{ $.Files.Get "src/dashboards/mimir/mimir-compactor.json" | fromJson | toJson }}
+  "mimir-overview-networking.json": |
+    {{ $.Files.Get "src/dashboards/mimir/mimir-overview-networking.json" | fromJson | toJson }}
+  "mimir-reads-networking.json": |
+    {{ $.Files.Get "src/dashboards/mimir/mimir-reads-networking.json" | fromJson | toJson }}
+  "mimir-remote-ruler-reads-resources.json": |
+    {{ $.Files.Get "src/dashboards/mimir/mimir-remote-ruler-reads-resources.json" | fromJson | toJson }}
+  "mimir-scaling.json": |
+    {{ $.Files.Get "src/dashboards/mimir/mimir-scaling.json" | fromJson | toJson }}
+  "mimir-writes-networking.json": |
+    {{ $.Files.Get "src/dashboards/mimir/mimir-writes-networking.json" | fromJson | toJson }}
+{{- end }}

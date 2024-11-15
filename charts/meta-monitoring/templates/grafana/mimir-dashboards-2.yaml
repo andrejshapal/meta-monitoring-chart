@@ -16,36 +16,4 @@ data:
     {{ $.Files.Get "src/dashboards/mimir/mimir-object-store.json" | fromJson | toJson }}
   "mimir-overview.json": |
     {{ $.Files.Get "src/dashboards/mimir/mimir-overview.json" | fromJson | toJson }}
-  "mimir-reads.json": |
-    {{ $.Files.Get "src/dashboards/mimir/mimir-reads.json" | fromJson | toJson }}
-  "mimir-rollout-progress.json": |
-    {{ $.Files.Get "src/dashboards/mimir/mimir-rollout-progress.json" | fromJson | toJson }}
-  "mimir-tenants.json": |
-    {{ $.Files.Get "src/dashboards/mimir/mimir-tenants.json" | fromJson | toJson }}
-  "mimir-writes.json": |
-    {{ $.Files.Get "src/dashboards/mimir/mimir-writes.json" | fromJson | toJson }}
-  "mimir-compactor-resources.json": |
-    {{ $.Files.Get "src/dashboards/mimir/mimir-compactor-resources.json" | fromJson | toJson }}
-  "mimir-overrides.json": |
-    {{ $.Files.Get "src/dashboards/mimir/mimir-overrides.json" | fromJson | toJson }}
-  "mimir-queries.json": |
-    {{ $.Files.Get "src/dashboards/mimir/mimir-queries.json" | fromJson | toJson }}
-  "mimir-remote-ruler-reads-networking.json": |
-    {{ $.Files.Get "src/dashboards/mimir/mimir-remote-ruler-reads-networking.json" | fromJson | toJson }}
-  "mimir-ruler.json": |
-    {{ $.Files.Get "src/dashboards/mimir/mimir-ruler.json" | fromJson | toJson }}
-  "mimir-top-tenants.json": |
-    {{ $.Files.Get "src/dashboards/mimir/mimir-top-tenants.json" | fromJson | toJson }}
-  "mimir-compactor.json": |
-    {{ $.Files.Get "src/dashboards/mimir/mimir-compactor.json" | fromJson | toJson }}
-  "mimir-overview-networking.json": |
-    {{ $.Files.Get "src/dashboards/mimir/mimir-overview-networking.json" | fromJson | toJson }}
-  "mimir-reads-networking.json": |
-    {{ $.Files.Get "src/dashboards/mimir/mimir-reads-networking.json" | fromJson | toJson }}
-  "mimir-remote-ruler-reads-resources.json": |
-    {{ $.Files.Get "src/dashboards/mimir/mimir-remote-ruler-reads-resources.json" | fromJson | toJson }}
-  "mimir-scaling.json": |
-    {{ $.Files.Get "src/dashboards/mimir/mimir-scaling.json" | fromJson | toJson }}
-  "mimir-writes-networking.json": |
-    {{ $.Files.Get "src/dashboards/mimir/mimir-writes-networking.json" | fromJson | toJson }}
 {{- end }}
