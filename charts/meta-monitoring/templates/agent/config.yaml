@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: agent-configmap
-  namespace: { { .Release.Namespace } }
+  namespace: {{ .Release.Namespace }}
 data:
   config.river: |
     discovery.kubernetes "pods" {
@@ -83,8 +83,8 @@ data:
       forward_to = [ {{ include "agent.loki_write_targets" . }} ]
 
       stage.json {
-          expressions = {
-            "start_delta" = "start_delta",
+          expressions = { 
+            "start_delta" = "start_delta", 
             "total_bytes" = "total_bytes",
             "component" = "component",
             "cache_chunk_hit" = "cache_chunk_hit",
