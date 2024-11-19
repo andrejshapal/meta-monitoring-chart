@@ -83,10 +83,8 @@ metrics:
   # The list of metrics to retain for logging dashboards
   retain:
     - alloy_build_info
-    - alloy_config_last_load_success_timestamp_seconds
-    - alloy_config_last_load_successful
-    - alloy_config_load_failures_total
     - alloy_component_controller_evaluating
+    - alloy_component_controller_running_components
     - alloy_component_dependencies_wait_seconds
     - alloy_component_dependencies_wait_seconds_bucket
     - alloy_component_evaluation_seconds
@@ -94,80 +92,283 @@ metrics:
     - alloy_component_evaluation_seconds_count
     - alloy_component_evaluation_seconds_sum
     - alloy_component_evaluation_slow_seconds
-    - alloy_component_controller_running_components
+    - alloy_config_last_load_success_timestamp_seconds
+    - alloy_config_last_load_successful
+    - alloy_config_load_failures_total
     - alloy_resources_machine_rx_bytes_total
     - alloy_resources_machine_tx_bytes_total
     - alloy_resources_process_cpu_seconds_total
     - alloy_resources_process_resident_memory_bytes
-    - prometheus_remote_write_wal_samples_appended_total
-    - prometheus_remote_write_wal_storage_active_series
-    - cluster_node_info
-    - cluster_node_lamport_time
-    - cluster_node_update_observers
     - cluster_node_gossip_health_score
     - cluster_node_gossip_proto_version
     - cluster_node_gossip_received_events_total
+    - cluster_node_info
+    - cluster_node_lamport_time
     - cluster_node_peers
+    - cluster_node_update_observers
     - cluster_transport_rx_bytes_total
-    - cluster_transport_rx_packets_total
+    - cluster_transport_rx_packet_queue_length
     - cluster_transport_rx_packets_failed_total
+    - cluster_transport_rx_packets_total
     - cluster_transport_stream_rx_bytes_total
     - cluster_transport_stream_rx_packets_failed_total
     - cluster_transport_stream_rx_packets_total
     - cluster_transport_stream_tx_bytes_total
-    - cluster_transport_stream_tx_packets_total
     - cluster_transport_stream_tx_packets_failed_total
+    - cluster_transport_stream_tx_packets_total
     - cluster_transport_streams
-    - cluster_transport_tx_packets_total
-    - cluster_transport_tx_packets_failed_total
-    - cluster_transport_rx_packet_queue_length
     - cluster_transport_tx_packet_queue_length
+    - cluster_transport_tx_packets_failed_total
+    - cluster_transport_tx_packets_total
     - container_cpu_usage_seconds_total
     - container_fs_writes_bytes_total
+    - container_memory_rss
     - container_memory_working_set_bytes
     - container_network_receive_bytes_total
     - container_network_transmit_bytes_total
     - container_spec_cpu_period
     - container_spec_cpu_quota
     - container_spec_memory_limit_bytes
+    - cortex_alertmanager_alerts
+    - cortex_alertmanager_dispatcher_aggregation_groups
+    - cortex_alertmanager_notification_latency_seconds_bucket
+    - cortex_alertmanager_notification_latency_seconds_count
+    - cortex_alertmanager_notification_latency_seconds_sum
+    - cortex_alertmanager_notifications_failed_total
+    - cortex_alertmanager_notifications_total
+    - cortex_alertmanager_ring_check_errors_total
+    - cortex_alertmanager_silences
+    - cortex_alertmanager_state_fetch_replica_state_failed_total
+    - cortex_alertmanager_state_fetch_replica_state_total
+    - cortex_alertmanager_state_initial_sync_completed_total
+    - cortex_alertmanager_state_initial_sync_duration_seconds_bucket
+    - cortex_alertmanager_state_initial_sync_duration_seconds_count
+    - cortex_alertmanager_state_initial_sync_duration_seconds_sum
+    - cortex_alertmanager_state_persist_failed_total
+    - cortex_alertmanager_state_persist_total
+    - cortex_alertmanager_sync_configs_failed_total
+    - cortex_alertmanager_sync_configs_total
+    - cortex_alertmanager_tenants_discovered
+    - cortex_alertmanager_tenants_owned
+    - cortex_bucket_blocks_count
+    - cortex_bucket_index_estimated_compaction_jobs
+    - cortex_bucket_index_estimated_compaction_jobs_errors_total
+    - cortex_bucket_index_load_duration_seconds_bucket
+    - cortex_bucket_index_load_duration_seconds_count
+    - cortex_bucket_index_load_duration_seconds_sum
+    - cortex_bucket_index_load_failures_total
+    - cortex_bucket_index_loaded
+    - cortex_bucket_index_loads_total
+    - cortex_bucket_store_block_drop_failures_total
+    - cortex_bucket_store_block_drops_total
+    - cortex_bucket_store_block_load_failures_total
+    - cortex_bucket_store_block_loads_total
+    - cortex_bucket_store_blocks_loaded
+    - cortex_bucket_store_indexheader_lazy_load_duration_seconds_bucket
+    - cortex_bucket_store_indexheader_lazy_load_duration_seconds_count
+    - cortex_bucket_store_indexheader_lazy_load_duration_seconds_sum
+    - cortex_bucket_store_indexheader_lazy_load_total
+    - cortex_bucket_store_indexheader_lazy_unload_total
+    - cortex_bucket_store_series_batch_preloading_load_duration_seconds_sum
+    - cortex_bucket_store_series_batch_preloading_wait_duration_seconds_sum
+    - cortex_bucket_store_series_blocks_queried_sum
+    - cortex_bucket_store_series_data_size_fetched_bytes_sum
+    - cortex_bucket_store_series_data_size_touched_bytes_sum
+    - cortex_bucket_store_series_hash_cache_hits_total
+    - cortex_bucket_store_series_hash_cache_requests_total
+    - cortex_bucket_store_series_request_stage_duration_seconds_bucket
+    - cortex_bucket_store_series_request_stage_duration_seconds_count
+    - cortex_bucket_store_series_request_stage_duration_seconds_sum
+    - cortex_bucket_stores_gate_duration_seconds_bucket
+    - cortex_bucket_stores_gate_duration_seconds_count
+    - cortex_bucket_stores_gate_duration_seconds_sum
+    - cortex_cache_memory_hits_total
+    - cortex_cache_memory_requests_total
+    - cortex_compactor_block_cleanup_failures_total
+    - cortex_compactor_blocks_cleaned_total
+    - cortex_compactor_blocks_marked_for_deletion_total
+    - cortex_compactor_last_successful_run_timestamp_seconds
+    - cortex_compactor_meta_sync_duration_seconds_bucket
+    - cortex_compactor_meta_sync_duration_seconds_count
+    - cortex_compactor_meta_sync_duration_seconds_sum
+    - cortex_compactor_meta_sync_failures_total
+    - cortex_compactor_meta_syncs_total
+    - cortex_compactor_runs_completed_total
+    - cortex_compactor_runs_failed_total
+    - cortex_compactor_runs_started_total
+    - cortex_compactor_tenants_discovered
+    - cortex_compactor_tenants_processing_failed
+    - cortex_compactor_tenants_processing_succeeded
+    - cortex_compactor_tenants_skipped
+    - cortex_config_hash
+    - cortex_discarded_exemplars_total
+    - cortex_discarded_requests_total
+    - cortex_discarded_samples_total
+    - cortex_distributor_deduped_samples_total
+    - cortex_distributor_exemplars_in_total
+    - cortex_distributor_instance_rejected_requests_total
+    - cortex_distributor_latest_seen_sample_timestamp_seconds
+    - cortex_distributor_non_ha_samples_received_total
+    - cortex_distributor_received_exemplars_total
+    - cortex_distributor_received_requests_total
+    - cortex_distributor_received_samples_total
+    - cortex_distributor_replication_factor
+    - cortex_distributor_requests_in_total
+    - cortex_distributor_samples_in_total
+    - cortex_frontend_query_range_duration_seconds_count
+    - cortex_frontend_query_result_cache_attempted_total
+    - cortex_frontend_query_result_cache_hits_total
+    - cortex_frontend_query_result_cache_requests_total
+    - cortex_frontend_query_result_cache_skipped_total
+    - cortex_frontend_query_sharding_rewrites_attempted_total
+    - cortex_frontend_query_sharding_rewrites_succeeded_total
+    - cortex_frontend_sharded_queries_per_query_bucket
+    - cortex_frontend_sharded_queries_per_query_count
+    - cortex_frontend_sharded_queries_per_query_sum
+    - cortex_frontend_split_queries_total
+    - cortex_inflight_requests
+    - cortex_ingester_active_native_histogram_buckets
+    - cortex_ingester_active_native_histogram_buckets_custom_tracker
+    - cortex_ingester_active_native_histogram_series
+    - cortex_ingester_active_native_histogram_series_custom_tracker
+    - cortex_ingester_active_series
+    - cortex_ingester_active_series_custom_tracker
+    - cortex_ingester_active_series_loading
+    - cortex_ingester_client_request_duration_seconds_bucket
+    - cortex_ingester_client_request_duration_seconds_count
+    - cortex_ingester_client_request_duration_seconds_sum
     - cortex_ingester_flush_queue_length
-    - cortex_prometheus_rule_group_iterations_total
+    - cortex_ingester_instance_rejected_requests_total
+    - cortex_ingester_local_limits
+    - cortex_ingester_memory_series
+    - cortex_ingester_memory_series_created_total
+    - cortex_ingester_memory_series_removed_total
+    - cortex_ingester_owned_series
+    - cortex_ingester_shipper_upload_failures_total
+    - cortex_ingester_shipper_uploads_total
+    - cortex_ingester_tsdb_checkpoint_creations_failed_total
+    - cortex_ingester_tsdb_checkpoint_creations_total
+    - cortex_ingester_tsdb_compaction_duration_seconds_bucket
+    - cortex_ingester_tsdb_compaction_duration_seconds_count
+    - cortex_ingester_tsdb_compaction_duration_seconds_sum
+    - cortex_ingester_tsdb_compactions_failed_total
+    - cortex_ingester_tsdb_compactions_total
+    - cortex_ingester_tsdb_exemplar_exemplars_appended_total
+    - cortex_ingester_tsdb_exemplar_exemplars_in_storage
+    - cortex_ingester_tsdb_exemplar_last_exemplars_timestamp_seconds
+    - cortex_ingester_tsdb_exemplar_series_with_exemplars_in_storage
+    - cortex_ingester_tsdb_mmap_chunk_corruptions_total
+    - cortex_ingester_tsdb_out_of_order_samples_appended_total
+    - cortex_ingester_tsdb_storage_blocks_bytes
+    - cortex_ingester_tsdb_symbol_table_size_bytes
+    - cortex_ingester_tsdb_wal_corruptions_total
+    - cortex_ingester_tsdb_wal_truncate_duration_seconds_count
+    - cortex_ingester_tsdb_wal_truncate_duration_seconds_sum
+    - cortex_ingester_tsdb_wal_truncations_failed_total
+    - cortex_ingester_tsdb_wal_truncations_total
+    - cortex_kv_request_duration_seconds_bucket
+    - cortex_kv_request_duration_seconds_count
+    - cortex_kv_request_duration_seconds_sum
+    - cortex_limits_defaults
+    - cortex_limits_overrides
+    - cortex_partition_ring_partitions
+    - cortex_prometheus_notifications_dropped_total
+    - cortex_prometheus_notifications_errors_total
+    - cortex_prometheus_notifications_queue_capacity
+    - cortex_prometheus_notifications_queue_length
+    - cortex_prometheus_notifications_sent_total
+    - cortex_prometheus_rule_evaluation_duration_seconds_count
+    - cortex_prometheus_rule_evaluation_duration_seconds_sum
     - cortex_prometheus_rule_evaluation_failures_total
-    - cortex_prometheus_rule_group_rules
+    - cortex_prometheus_rule_evaluations_total
+    - cortex_prometheus_rule_group_duration_seconds_count
+    - cortex_prometheus_rule_group_duration_seconds_sum
+    - cortex_prometheus_rule_group_iterations_missed_total
+    - cortex_prometheus_rule_group_iterations_total
     - cortex_prometheus_rule_group_last_duration_seconds
     - cortex_prometheus_rule_group_last_evaluation_timestamp_seconds
-    - cortex_prometheus_rule_group_iterations_missed_total
+    - cortex_prometheus_rule_group_rules
+    - cortex_querier_blocks_consistency_checks_failed_total
+    - cortex_querier_blocks_consistency_checks_total
+    - cortex_querier_queries_rejected_total
+    - cortex_querier_request_duration_seconds_bucket
+    - cortex_querier_request_duration_seconds_count
+    - cortex_querier_storegateway_instances_hit_per_query_bucket
+    - cortex_querier_storegateway_instances_hit_per_query_count
+    - cortex_querier_storegateway_instances_hit_per_query_sum
+    - cortex_querier_storegateway_refetches_per_query_bucket
+    - cortex_querier_storegateway_refetches_per_query_count
+    - cortex_querier_storegateway_refetches_per_query_sum
+    - cortex_query_frontend_queries_total
+    - cortex_query_frontend_queue_duration_seconds_bucket
+    - cortex_query_frontend_queue_duration_seconds_count
+    - cortex_query_frontend_queue_duration_seconds_sum
+    - cortex_query_frontend_queue_length
+    - cortex_query_frontend_retries_bucket
+    - cortex_query_frontend_retries_count
+    - cortex_query_frontend_retries_sum
+    - cortex_query_scheduler_queue_duration_seconds_bucket
+    - cortex_query_scheduler_queue_duration_seconds_count
+    - cortex_query_scheduler_queue_duration_seconds_sum
+    - cortex_query_scheduler_queue_length
+    - cortex_request_duration_seconds
+    - cortex_request_duration_seconds_bucket
+    - cortex_request_duration_seconds_count
+    - cortex_ruler_managers_total
+    - cortex_runtime_config_hash
+    - cortex_tcp_connections
+    - cortex_tcp_connections_limit
     - exporter_send_failed_spans_ratio_total
     - exporter_sent_spans_ratio_total
+    - flag
+    - go_gc_cpu_seconds_total
     - go_gc_duration_seconds
     - go_gc_duration_seconds_count
     - go_goroutines
     - go_memstats_heap_inuse_bytes
-    - kubelet_volume_stats_used_bytes
-    - kubelet_volume_stats_capacity_bytes
+    - go_sched_latencies_seconds_bucket
+    - keda_scaler_metrics_value
     - kube_deployment_created
+    - kube_deployment_status_replicas
+    - kube_deployment_status_replicas_ready
+    - kube_deployment_status_replicas_unavailable
+    - kube_deployment_status_replicas_updated
+    - kube_horizontalpodautoscaler_info
+    - kube_horizontalpodautoscaler_spec_max_replicas
+    - kube_horizontalpodautoscaler_spec_min_replicas
+    - kube_horizontalpodautoscaler_spec_target_metric
+    - kube_horizontalpodautoscaler_status_current_replicas
     - kube_persistentvolumeclaim_labels
     - kube_pod_container_info
     - kube_pod_container_resource_requests
     - kube_pod_container_status_last_terminated_reason
     - kube_pod_container_status_restarts_total
+    - kube_statefulset_status_replicas
+    - kube_statefulset_status_replicas_current
+    - kube_statefulset_status_replicas_ready
+    - kube_statefulset_status_replicas_updated
+    - kubelet_volume_stats_capacity_bytes
+    - kubelet_volume_stats_used_bytes
     - loki_azure_blob_request_duration_seconds_bucket
     - loki_boltdb_shipper_compact_tables_operation_duration_seconds
     - loki_boltdb_shipper_compact_tables_operation_last_successful_run_timestamp_seconds
+    - loki_boltdb_shipper_request_duration_seconds_bucket
+    - loki_boltdb_shipper_request_duration_seconds_count
+    - loki_boltdb_shipper_request_duration_seconds_sum
     - loki_boltdb_shipper_retention_marker_count_total
     - loki_boltdb_shipper_retention_marker_table_processed_duration_seconds_bucket
     - loki_boltdb_shipper_retention_marker_table_processed_duration_seconds_count
     - loki_boltdb_shipper_retention_marker_table_processed_duration_seconds_sum
     - loki_boltdb_shipper_retention_marker_table_processed_total
-    - loki_boltdb_shipper_request_duration_seconds_bucket
-    - loki_boltdb_shipper_request_duration_seconds_count
-    - loki_boltdb_shipper_request_duration_seconds_sum
     - loki_boltdb_shipper_retention_sweeper_chunk_deleted_duration_seconds_bucket
     - loki_boltdb_shipper_retention_sweeper_chunk_deleted_duration_seconds_count
     - loki_boltdb_shipper_retention_sweeper_chunk_deleted_duration_seconds_sum
-    - loki_boltdb_shipper_retention_sweeper_marker_files_current
     - loki_boltdb_shipper_retention_sweeper_marker_file_processing_current_time
+    - loki_boltdb_shipper_retention_sweeper_marker_files_current
     - loki_build_info
+    - loki_cache_chunk_bytes_fetched
+    - loki_cache_chunk_hit_over_time
+    - loki_cache_chunk_req_over_time
     - loki_chunk_store_deduped_chunks_total
     - loki_chunk_store_index_entries_per_chunk_bucket
     - loki_chunk_store_index_entries_per_chunk_count
@@ -178,8 +379,8 @@ metrics:
     - loki_compactor_oldest_pending_delete_request_age_seconds
     - loki_compactor_pending_delete_requests_count
     - loki_consul_request_duration_seconds_bucket
-    - loki_discarded_samples_total
     - loki_discarded_bytes_total
+    - loki_discarded_samples_total
     - loki_distributor_bytes_received_total
     - loki_distributor_lines_received_total
     - loki_distributor_structured_metadata_bytes_received_total
@@ -193,9 +394,11 @@ metrics:
     - loki_ingester_chunk_bounds_hours_bucket
     - loki_ingester_chunk_bounds_hours_count
     - loki_ingester_chunk_bounds_hours_sum
+    - loki_ingester_chunk_decompressed_bytes_fetched
     - loki_ingester_chunk_entries_bucket
     - loki_ingester_chunk_entries_count
     - loki_ingester_chunk_entries_sum
+    - loki_ingester_chunk_head_bytes_fetched
     - loki_ingester_chunk_size_bytes_bucket
     - loki_ingester_chunk_utilization_bucket
     - loki_ingester_chunk_utilization_count
@@ -205,9 +408,13 @@ metrics:
     - loki_ingester_memory_chunks
     - loki_ingester_memory_streams
     - loki_ingester_streams_created_total
+    - loki_memcached_request_duration_seconds_bucket
+    - loki_memcached_request_duration_seconds_count
+    - loki_memcached_request_duration_seconds_sum
     - loki_request_duration_seconds_bucket
     - loki_request_duration_seconds_count
     - loki_request_duration_seconds_sum
+    - loki_requested_chunk_volume_over_time
     - loki_ruler_wal_appender_ready
     - loki_ruler_wal_disk_size
     - loki_ruler_wal_prometheus_remote_storage_highest_timestamp_in_seconds
@@ -218,13 +425,42 @@ metrics:
     - loki_ruler_wal_storage_created_series_total
     - loki_s3_request_duration_seconds_bucket
     - loki_s3_request_duration_seconds_count
+    - loki_total_bytes_fetched
     - loki_write_batch_retries_total
     - loki_write_dropped_bytes_total
     - loki_write_dropped_entries_total
     - loki_write_sent_bytes_total
     - loki_write_sent_entries_total
+    - memcached_accepting_connections
+    - memcached_commands_total
+    - memcached_connections_listener_disabled_total
+    - memcached_connections_yielded_total
+    - memcached_current_bytes
+    - memcached_current_connections
+    - memcached_current_items
+    - memcached_item_no_memory_total
+    - memcached_item_too_large_total
+    - memcached_items_evicted_total
+    - memcached_items_reclaimed_total
+    - memcached_items_total
+    - memcached_limit_bytes
+    - memcached_max_connections
+    - memcached_process_system_cpu_seconds_total
+    - memcached_process_user_cpu_seconds_total
+    - memcached_read_bytes_total
+    - memcached_up
+    - memcached_uptime_seconds
+    - memcached_version
+    - memcached_written_bytes_total
     - node_disk_read_bytes_total
     - node_disk_written_bytes_total
+    - process_cpu_seconds_total
+    - process_io_storage_read_bytes_total
+    - process_io_storage_written_bytes_total
+    - process_max_fds
+    - process_num_threads
+    - process_open_fds
+    - process_resident_memory_bytes
     - process_start_time_seconds
     - processor_batch_batch_send_size_ratio_bucket
     - processor_batch_metadata_cardinality_ratio
@@ -258,6 +494,10 @@ metrics:
     - prometheus_target_scrapes_sample_out_of_bounds_total
     - prometheus_target_scrapes_sample_out_of_order_total
     - prometheus_target_sync_length_seconds_sum
+    - prometheus_tsdb_compaction_duration_seconds_bucket
+    - prometheus_tsdb_compaction_duration_seconds_count
+    - prometheus_tsdb_compaction_duration_seconds_sum
+    - prometheus_tsdb_compactions_total
     - prometheus_wal_watcher_current_segment
     - promtail_custom_bad_words_total
     - promtail_dropped_bytes_total
@@ -266,48 +506,91 @@ metrics:
     - promtail_read_lines_total
     - promtail_request_duration_seconds_bucket
     - promtail_sent_entries_total
-    - rpc_server_duration_milliseconds_bucket
     - receiver_accepted_spans_ratio_total
     - receiver_refused_spans_ratio_total
+    - rpc_server_duration_milliseconds_bucket
     - scrape_duration_seconds
-    - traces_exporter_sent_spans
+    - scrape_series_added
+    - thanos_cache_hits_total
+    - thanos_cache_memcached_hits_total
+    - thanos_cache_memcached_requests_total
+    - thanos_cache_operation_duration_seconds_bucket
+    - thanos_cache_operation_duration_seconds_count
+    - thanos_cache_operation_duration_seconds_sum
+    - thanos_cache_operations_total
+    - thanos_cache_requests_total
+    - thanos_memcached_operation_duration_seconds_bucket
+    - thanos_memcached_operation_duration_seconds_count
+    - thanos_memcached_operation_duration_seconds_sum
+    - thanos_memcached_operations_total
+    - thanos_objstore_bucket_operation_duration_seconds_bucket
+    - thanos_objstore_bucket_operation_duration_seconds_count
+    - thanos_objstore_bucket_operation_duration_seconds_sum
+    - thanos_objstore_bucket_operation_failures_total
+    - thanos_objstore_bucket_operations_total
+    - thanos_store_index_cache_hits_total
+    - thanos_store_index_cache_requests_total
     - traces_exporter_send_failed_spans
+    - traces_exporter_sent_spans
     - traces_loadbalancer_backend_outcome
     - traces_loadbalancer_num_backends
     - traces_receiver_accepted_spans
     - traces_receiver_refused_spans
     - up
-    - loki_memcached_request_duration_seconds_bucket
-    - loki_memcached_request_duration_seconds_count
-    - loki_memcached_request_duration_seconds_sum
-    - memcached_uptime_seconds
-    - memcached_up
-    - memcached_current_bytes
-    - memcached_limit_bytes
-    - memcached_commands_total
-    - memcached_items_evicted_total
-    - memcached_items_reclaimed_total
-    - memcached_accepting_connections
-    - memcached_connections_yielded_total
-    - memcached_connections_listener_disabled_total
-    - memcached_item_too_large_total
-    - memcached_item_no_memory_total
-    - memcached_version
-    - memcached_current_connections
-    - memcached_max_connections
-    - memcached_read_bytes_total
-    - memcached_written_bytes_total
-    - memcached_process_system_cpu_seconds_total
-    - memcached_process_user_cpu_seconds_total
-    - memcached_items_total
-    - memcached_current_items
-    - loki_requested_chunk_volume_over_time
-    - loki_cache_chunk_req_over_time
-    - loki_cache_chunk_hit_over_time
-    - loki_total_bytes_fetched
-    - loki_ingester_chunk_decompressed_bytes_fetched
-    - loki_ingester_chunk_head_bytes_fetched
-    - loki_cache_chunk_bytes_fetched
+    - vm_app_start_timestamp
+    - vm_app_version
+    - vm_available_cpu_cores
+    - vm_available_memory_bytes
+    - vm_concurrent_insert_capacity
+    - vm_concurrent_insert_current
+    - vm_ingestserver_request_errors_total
+    - vm_ingestserver_requests_total
+    - vm_log_messages_total
+    - vm_persistentqueue_bytes_dropped_total
+    - vm_persistentqueue_bytes_pending
+    - vm_persistentqueue_read_duration_seconds_total
+    - vm_persistentqueue_write_duration_seconds_total
+    - vm_promscrape_conn_bytes_read_total
+    - vm_promscrape_dial_errors_total
+    - vm_promscrape_max_scrape_size_exceeded_errors_total
+    - vm_promscrape_scrape_duration_seconds_bucket
+    - vm_promscrape_scrape_pool_targets
+    - vm_promscrape_scrape_response_size_bytes_bucket
+    - vm_promscrape_scraped_samples_sum
+    - vm_promscrape_scrapes_failed_total
+    - vm_promscrape_scrapes_gunzip_failed_total
+    - vm_promscrape_scrapes_timed_out_total
+    - vm_promscrape_scrapes_total
+    - vm_promscrape_targets
+    - vm_protoparser_read_errors_total
+    - vm_protoparser_rows_read_total
+    - vm_protoparser_unmarshal_errors_total
+    - vm_rows_invalid_total
+    - vm_streamaggr_dedup_flush_duration_seconds_bucket
+    - vm_streamaggr_dedup_flush_timeouts_total
+    - vm_streamaggr_flush_timeouts_total
+    - vm_streamaggr_ignored_samples_total
+    - vm_streamaggr_labels_compressor_items_count
+    - vm_streamaggr_labels_compressor_size_bytes
+    - vm_streamaggr_matched_samples_total
+    - vm_streamaggr_output_samples_total
+    - vm_streamaggr_samples_lag_seconds_bucket
+    - vm_tcplistener_read_bytes_total
+    - vmagent_daily_series_limit_current_series
+    - vmagent_daily_series_limit_max_series
+    - vmagent_hourly_series_limit_current_series
+    - vmagent_hourly_series_limit_max_series
+    - vmagent_http_request_errors_total
+    - vmagent_http_requests_total
+    - vmagent_remotewrite_block_size_rows_sum
+    - vmagent_remotewrite_conn_bytes_written_total
+    - vmagent_remotewrite_conns
+    - vmagent_remotewrite_packets_dropped_total
+    - vmagent_remotewrite_pending_data_bytes
+    - vmagent_remotewrite_relabel_metrics_dropped_total
+    - vmagent_remotewrite_requests_total
+    - vmagent_remotewrite_retries_count_total
+    - vmagent_rows_inserted_total
   # Additional metrics to retain
   extraMetrics: []
 # Set enabled = true to add the default logs dashboards to the local Grafana
