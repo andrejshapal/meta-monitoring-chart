@@ -30,7 +30,7 @@ spec:
       containers:
         - args:
             - -target=ruler
-            - -log.level=debug
+            - -log.level=warn
             - -ruler-storage.backend=local
             - -ruler-storage.local.directory=/etc/rules
             - -ruler.ring.prefix=dashboards/
