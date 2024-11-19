@@ -150,6 +150,7 @@ metrics:
     - cortex_alertmanager_sync_configs_total
     - cortex_alertmanager_tenants_discovered
     - cortex_alertmanager_tenants_owned
+    - cortex_build_info
     - cortex_bucket_blocks_count
     - cortex_bucket_index_estimated_compaction_jobs
     - cortex_bucket_index_estimated_compaction_jobs_errors_total
