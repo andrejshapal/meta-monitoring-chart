@@ -1,3 +1,7 @@
 .DS_Store
 script.py
 res.json
+vendor
+charts/meta-monitoring/jsonnetfile.lock.json
+charts/meta-monitoring/jsonnetfile.json
+charts/meta-monitoring/mimir-config.jsonnet
