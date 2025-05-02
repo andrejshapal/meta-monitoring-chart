@@ -689,6 +689,7 @@ metrics:
     - cluster_job:cortex_alertmanager_partial_state_merges_total:rate5m
     - cluster_job:cortex_alertmanager_partial_state_merges_failed_total:rate5m
     - cluster_namespace_pod:cortex_ingester_ingested_samples_total:rate1m
+    - loki_.*
   # Additional metrics to retain
   extraMetrics: []
 # Set enabled = true to add the default logs dashboards to the local Grafana
