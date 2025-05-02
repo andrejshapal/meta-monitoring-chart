@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: agent-configmap
-  namespace: {{ .Release.Namespace }}
+  namespace: { { .Release.Namespace } }
 data:
   config.river: |
     discovery.kubernetes "pods" {
@@ -83,14 +83,15 @@ data:
       forward_to = [ {{ include "agent.loki_write_targets" . }} ]
 
       stage.json {
-          expressions = { 
-            "start_delta" = "start_delta", 
+          expressions = {
+            "start_delta" = "start_delta",
             "total_bytes" = "total_bytes",
             "component" = "component",
             "cache_chunk_hit" = "cache_chunk_hit",
             "cache_chunk_req" = "cache_chunk_req",
             "cache_chunk_bytes_fetched" = "cache_chunk_bytes_fetched",
-            "ingester_chunk_decompressed_bytes" = "ingester_chunk_decompressed_bytes",
+            "cache_chunk_bytes_stored" = "cache_chunk_bytes_stored",
+            "ingester_chunk_compressed_bytes" = "ingester_chunk_compressed_bytes",
             "ingester_chunk_head_bytes" = "ingester_chunk_head_bytes",
           }
       }
@@ -111,13 +112,8 @@ data:
       }
 
       stage.template {
-        source   = "total_bytes_parsed"
-        template = {{ printf "`" }}{{`{{- if hasSuffix "MB" .total_bytes -}}{{ mul (trimSuffix "MB" .total_bytes | float64) 1048576 -}}{{- else if hasSuffix "kB" .total_bytes -}}{{ mul (trimSuffix "kB" .total_bytes | float64) 1024 -}}{{- else if hasSuffix "B" .total_bytes -}}{{ trimSuffix "B" .total_bytes | int -}}{{- else -}}0{{- end -}}`}}{{ printf "`" }}
-      }
-
-      stage.template {
-        source   = "ingester_chunk_decompressed_bytes_parsed"
-        template = {{ printf "`" }}{{`{{- if hasSuffix "MB" .ingester_chunk_decompressed_bytes -}}{{ mul (trimSuffix "MB" .ingester_chunk_decompressed_bytes | float64) 1048576 -}}{{- else if hasSuffix "kB" .ingester_chunk_decompressed_bytes -}}{{ mul (trimSuffix "kB" .ingester_chunk_decompressed_bytes | float64) 1024 -}}{{- else if hasSuffix "B" .ingester_chunk_decompressed_bytes -}}{{ trimSuffix "B" .ingester_chunk_decompressed_bytes | int -}}{{- else -}}0{{- end -}}`}}{{ printf "`" }}
+        source   = "ingester_chunk_compressed_bytes"
+        template = {{ printf "`" }}{{`{{- if hasSuffix "MB" .ingester_chunk_compressed_bytes -}}{{ mul (trimSuffix "MB" .ingester_chunk_compressed_bytes | float64) 1048576 -}}{{- else if hasSuffix "kB" .ingester_chunk_compressed_bytes -}}{{ mul (trimSuffix "kB" .ingester_chunk_compressed_bytes | float64) 1024 -}}{{- else if hasSuffix "B" .ingester_chunk_compressed_bytes -}}{{ trimSuffix "B" .ingester_chunk_compressed_bytes | int -}}{{- else -}}0{{- end -}}`}}{{ printf "`" }}
       }
 
       stage.template {
@@ -128,34 +124,33 @@ data:
       stage.labels {
         values = {
           start_delta_s = "",
-          total_bytes_parsed = "",
           component = "",
           bucket = "",
         }
       }
 
       stage.match {
-        selector = "{component=\"querier\", start_delta_s!=\"0\", total_bytes_parsed!=\"0\"}"
+        selector = "{component=\"querier\", start_delta_s!=\"0\"}"
         stage.label_drop {
-            values = [ "start_delta_s", "total_bytes_parsed" ]
+            values = [ "start_delta_s"]
         }
 
         stage.metrics {
           metric.counter {
-              name        = "requested_chunk_volume_over_time"
-              description = "Queries causes chunks being loaded from different sources. This metrics shows the breakdown of requested chunk sizes by periods"
+              name        = "cache_chunk_hit_over_time"
+              description = "How many chunks were hit in cache distributed by chunk age buckets."
               prefix      = "loki_"
-              source      = "total_bytes_parsed"
+              source      = "cache_chunk_hit"
 
               action            = "add"
               max_idle_duration = "24h"
           }
         }
 
-      stage.metrics {
-        metric.counter {
+        stage.metrics {
+          metric.counter {
               name        = "cache_chunk_req_over_time"
-              description = "Should help to calculate hit/req ratio per chunks over age"
+              description = "How many chunks were requested from cache distributed by chunk age buckets."
               prefix      = "loki_"
               source      = "cache_chunk_req"
 
@@ -166,10 +161,22 @@ data:
 
         stage.metrics {
           metric.counter {
-              name        = "cache_chunk_hit_over_time"
-              description = "Should help to calculate hit/req ratio per chunks over age"
+              name        = "cache_chunk_bytes_fetched_over_time"
+              description = "The volume of chunks were fetched from cache distributed by chunk age buckets."
               prefix      = "loki_"
-              source      = "cache_chunk_hit"
+              source      = "cache_chunk_bytes_fetched"
+
+              action            = "add"
+              max_idle_duration = "24h"
+          }
+        }
+
+        stage.metrics {
+          metric.counter {
+              name        = "cache_chunk_bytes_stored_over_time"
+              description = "The volume of chunks were retrieved from bucket distributed by chunk age buckets."
+              prefix      = "loki_"
+              source      = "cache_chunk_bytes_stored"
 
               action            = "add"
               max_idle_duration = "24h"
@@ -194,10 +201,10 @@ data:
 
         stage.metrics {
           metric.counter {
-              name        = "ingester_chunk_decompressed_bytes_fetched"
+              name        = "ingester_chunk_compressed_bytes_fetched"
               description = "Total size of chunks was fetched from ingester"
               prefix      = "loki_"
-              source      = "ingester_chunk_decompressed_bytes_parsed"
+              source      = "ingester_chunk_compressed_bytes"
 
               action            = "add"
               max_idle_duration = "24h"
@@ -222,6 +229,18 @@ data:
               description = "Total size of chunks was fetched from chunk cache"
               prefix      = "loki_"
               source      = "cache_chunk_bytes_fetched"
+
+              action            = "add"
+              max_idle_duration = "24h"
+          }
+        }
+
+        stage.metrics {
+          metric.counter {
+              name        = "cache_chunk_bytes_stored"
+              description = "Total size of chunks was fetched from bucket"
+              prefix      = "loki_"
+              source      = "cache_chunk_bytes_stored"
 
               action            = "add"
               max_idle_duration = "24h"
