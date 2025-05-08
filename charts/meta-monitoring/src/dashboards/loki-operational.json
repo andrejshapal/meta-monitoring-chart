@@ -18,15 +18,14 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 6,
   "links": [
     {
       "asDropdown": true,
       "icon": "external link",
       "includeVars": true,
       "keepTime": true,
-      "tags": [
-        "loki"
-      ],
+      "tags": ["loki"],
       "targetBlank": false,
       "title": "Loki Dashboards",
       "type": "dashboards"
@@ -3767,7 +3766,7 @@
       "type": "row"
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "datasource": {
         "type": "datasource",
         "uid": "grafana"
@@ -3779,1134 +3778,7 @@
         "y": 5
       },
       "id": 94,
-      "panels": [
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "uid": "$datasource"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 6
-          },
-          "hiddenSeries": false,
-          "id": 102,
-          "interval": "1m",
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null",
-          "options": {
-            "dataLinks": [],
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "panels": [],
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [
-            {
-              "alias": "De-Dupe Ratio",
-              "yaxis": 2
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "datasource": {
-                "uid": "$datasource"
-              },
-              "expr": "sum(rate(loki_ingester_chunks_flushed_total{cluster=\"$cluster\",job=~\"($namespace)/(.*ingester.*|(loki|enterprise-logs)-write|loki-single-binary)\"}[$__rate_interval]))",
-              "interval": "",
-              "legendFormat": "Chunks",
-              "refId": "A"
-            },
-            {
-              "datasource": {
-                "uid": "$datasource"
-              },
-              "expr": "sum(increase(loki_chunk_store_deduped_chunks_total{cluster=\"$cluster\", job=~\"($namespace)/(.*ingester.*|(loki|enterprise-logs)-write|loki-single-binary)\"}[$__rate_interval]))/sum(increase(loki_ingester_chunks_flushed_total{cluster=\"$cluster\", job=~\"($namespace)/(.*ingester.*|(loki|enterprise-logs)-write|loki-single-binary)\"}[$__rate_interval])) < 1",
-              "interval": "",
-              "legendFormat": "De-Dupe Ratio",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeRegions": [],
-          "title": "Chunks Flushed/Sec",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "timeseries",
-          "xaxis": {
-            "mode": "time",
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false
-          }
-        },
-        {
-          "cards": {},
-          "color": {
-            "cardColor": "#b4ff00",
-            "colorScale": "sqrt",
-            "colorScheme": "interpolateSpectral",
-            "exponent": 0.5,
-            "mode": "spectrum"
-          },
-          "dataFormat": "tsbuckets",
-          "datasource": {
-            "uid": "$datasource"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "custom": {
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "scaleDistribution": {
-                  "type": "linear"
-                }
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 12,
-            "y": 6
-          },
-          "heatmap": {},
-          "hideZeroBuckets": false,
-          "highlightCards": true,
-          "id": 100,
-          "interval": "1m",
-          "legend": {
-            "show": true
-          },
-          "options": {
-            "calculate": false,
-            "calculation": {},
-            "cellGap": 2,
-            "cellValues": {},
-            "color": {
-              "exponent": 0.5,
-              "fill": "#b4ff00",
-              "mode": "scheme",
-              "reverse": false,
-              "scale": "exponential",
-              "scheme": "Spectral",
-              "steps": 128
-            },
-            "exemplars": {
-              "color": "rgba(255,0,255,0.7)"
-            },
-            "filterValues": {
-              "le": 1e-9
-            },
-            "legend": {
-              "show": true
-            },
-            "rowsFrame": {
-              "layout": "auto"
-            },
-            "showValue": "never",
-            "tooltip": {
-              "mode": "single",
-              "showColorScale": false,
-              "yHistogram": false
-            },
-            "yAxis": {
-              "axisPlacement": "left",
-              "decimals": 0,
-              "reverse": false,
-              "unit": "bytes"
-            }
-          },
-          "panels": [],
-          "pluginVersion": "10.4.2",
-          "reverseYBuckets": false,
-          "targets": [
-            {
-              "datasource": {
-                "uid": "$datasource"
-              },
-              "expr": "sum(rate(loki_ingester_chunk_size_bytes_bucket{cluster=\"$cluster\",job=~\"($namespace)/(.*ingester.*|(loki|enterprise-logs)-write|loki-single-binary)\"}[$__rate_interval])) by (le)",
-              "format": "heatmap",
-              "instant": false,
-              "interval": "",
-              "legendFormat": "{{ le }}",
-              "refId": "A"
-            }
-          ],
-          "title": "Chunk Size Bytes",
-          "tooltip": {
-            "show": true,
-            "showHistogram": false
-          },
-          "type": "heatmap",
-          "xAxis": {
-            "show": true
-          },
-          "yAxis": {
-            "decimals": 0,
-            "format": "bytes",
-            "logBase": 1,
-            "show": true
-          },
-          "yBucketBound": "auto"
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "uid": "$datasource"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "fill": 7,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 14
-          },
-          "hiddenSeries": false,
-          "id": 96,
-          "interval": "1m",
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null",
-          "options": {
-            "dataLinks": [],
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "panels": [],
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": true,
-          "steppedLine": false,
-          "targets": [
-            {
-              "datasource": {
-                "uid": "$datasource"
-              },
-              "expr": "sum by(reason) (rate(loki_ingester_chunks_flushed_total{cluster=~\"$cluster\",job=~\"($namespace)/(.*ingester.*|(loki|enterprise-logs)-write|loki-single-binary)\", namespace=~\"$namespace\"}[$__rate_interval])) / ignoring(reason) group_left sum(rate(loki_ingester_chunks_flushed_total{cluster=~\"$cluster\",job=~\"($namespace)/(.*ingester.*|(loki|enterprise-logs)-write|loki-single-binary)\", namespace=~\"$namespace\"}[$__rate_interval]))",
-              "interval": "",
-              "legendFormat": "{{ reason }}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeRegions": [],
-          "title": "Chunk Flush Reason %",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "timeseries",
-          "xaxis": {
-            "mode": "time",
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "percentunit",
-              "logBase": 1,
-              "max": "1",
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false
-          }
-        },
-        {
-          "cards": {},
-          "color": {
-            "cardColor": "#b4ff00",
-            "colorScale": "sqrt",
-            "colorScheme": "interpolateSpectral",
-            "exponent": 0.5,
-            "mode": "spectrum"
-          },
-          "dataFormat": "tsbuckets",
-          "datasource": {
-            "uid": "$datasource"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "custom": {
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "scaleDistribution": {
-                  "type": "linear"
-                }
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 14
-          },
-          "heatmap": {},
-          "hideZeroBuckets": true,
-          "highlightCards": true,
-          "id": 98,
-          "interval": "1m",
-          "legend": {
-            "show": true
-          },
-          "options": {
-            "calculate": false,
-            "calculation": {},
-            "cellGap": 2,
-            "cellValues": {},
-            "color": {
-              "exponent": 0.5,
-              "fill": "#b4ff00",
-              "mode": "scheme",
-              "reverse": false,
-              "scale": "exponential",
-              "scheme": "Spectral",
-              "steps": 128
-            },
-            "exemplars": {
-              "color": "rgba(255,0,255,0.7)"
-            },
-            "filterValues": {
-              "le": 1e-9
-            },
-            "legend": {
-              "show": true
-            },
-            "rowsFrame": {
-              "layout": "auto"
-            },
-            "showValue": "never",
-            "tooltip": {
-              "mode": "single",
-              "showColorScale": false,
-              "yHistogram": false
-            },
-            "yAxis": {
-              "axisPlacement": "left",
-              "decimals": 0,
-              "reverse": false,
-              "unit": "percentunit"
-            }
-          },
-          "panels": [],
-          "pluginVersion": "10.4.2",
-          "reverseYBuckets": false,
-          "targets": [
-            {
-              "datasource": {
-                "uid": "$datasource"
-              },
-              "expr": "sum by (le) (rate(loki_ingester_chunk_utilization_bucket{cluster=\"$cluster\", job=~\"($namespace)/(.*ingester|(loki|enterprise-logs)-write|loki-single-binary)\"}[$__rate_interval]))",
-              "format": "heatmap",
-              "instant": false,
-              "interval": "",
-              "legendFormat": "{{ le }}",
-              "refId": "A"
-            }
-          ],
-          "title": "Chunk Utilization",
-          "tooltip": {
-            "show": true,
-            "showHistogram": false
-          },
-          "type": "heatmap",
-          "xAxis": {
-            "show": true
-          },
-          "yAxis": {
-            "decimals": 0,
-            "format": "percentunit",
-            "logBase": 1,
-            "show": true
-          },
-          "yBucketBound": "auto"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "continuous-GrYlRd"
-              },
-              "decimals": 2,
-              "fieldMinMax": true,
-              "mappings": [],
-              "max": 1,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  }
-                ]
-              },
-              "unit": "percentunit"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 24,
-            "x": 0,
-            "y": 23
-          },
-          "id": 120,
-          "options": {
-            "displayMode": "gradient",
-            "maxVizHeight": 300,
-            "minVizHeight": 16,
-            "minVizWidth": 8,
-            "namePlacement": "auto",
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showUnfilled": true,
-            "sizing": "auto",
-            "valueMode": "color"
-          },
-          "pluginVersion": "10.4.2",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<3h\"}[$__range])) / sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "instant": true,
-              "legendFormat": "__auto",
-              "range": false,
-              "refId": "<3h"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<12h\"}[$__range])) / sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{bucket}}",
-              "range": false,
-              "refId": "<12h"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<1d\"}[$__range])) / sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{bucket}}",
-              "range": false,
-              "refId": "<1d"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<2d\"}[$__range])) / sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{bucket}}",
-              "range": false,
-              "refId": "<2d"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<3d\"}[$__range])) / sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{bucket}}",
-              "range": false,
-              "refId": "<3d"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<4d\"}[$__range])) / sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{bucket}}",
-              "range": false,
-              "refId": "<4d"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<5d\"}[$__range])) / sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{bucket}}",
-              "range": false,
-              "refId": "<5d"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<1w\"}[$__range])) / sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{bucket}}",
-              "range": false,
-              "refId": "<1w"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<2w\"}[$__range])) / sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{bucket}}",
-              "range": false,
-              "refId": "<2w"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<1mo\"}[$__range])) / sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{bucket}}",
-              "range": false,
-              "refId": "<1mo"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\">1mo\"}[$__range])) / sum(increase(loki_requested_chunk_volume_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{bucket}}",
-              "range": false,
-              "refId": ">1mo"
-            }
-          ],
-          "title": "Chunk Volume Distribution by Cumulative Buckets",
-          "transformations": [
-            {
-              "id": "renameByRegex",
-              "options": {
-                "regex": "Value #(.*)",
-                "renamePattern": "$1"
-              }
-            }
-          ],
-          "type": "bargauge"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "continuous-GrYlRd"
-              },
-              "decimals": 2,
-              "fieldMinMax": true,
-              "mappings": [],
-              "max": 1,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  }
-                ]
-              },
-              "unit": "percentunit"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 24,
-            "x": 0,
-            "y": 31
-          },
-          "id": 121,
-          "options": {
-            "displayMode": "gradient",
-            "maxVizHeight": 300,
-            "minVizHeight": 16,
-            "minVizWidth": 8,
-            "namePlacement": "auto",
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showUnfilled": true,
-            "sizing": "auto",
-            "valueMode": "color"
-          },
-          "pluginVersion": "10.4.2",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<3h\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "instant": true,
-              "legendFormat": "__auto",
-              "range": false,
-              "refId": "<3h"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<12h\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{bucket}}",
-              "range": false,
-              "refId": "<12h"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<1d\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{bucket}}",
-              "range": false,
-              "refId": "<1d"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<2d\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{bucket}}",
-              "range": false,
-              "refId": "<2d"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<3d\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{bucket}}",
-              "range": false,
-              "refId": "<3d"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<4d\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{bucket}}",
-              "range": false,
-              "refId": "<4d"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<5d\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{bucket}}",
-              "range": false,
-              "refId": "<5d"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<1w\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{bucket}}",
-              "range": false,
-              "refId": "<1w"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<2w\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{bucket}}",
-              "range": false,
-              "refId": "<2w"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<1mo\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{bucket}}",
-              "range": false,
-              "refId": "<1mo"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\">1mo\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{bucket}}",
-              "range": false,
-              "refId": ">1mo"
-            }
-          ],
-          "title": "Chunk Cache Hit Ratio by Cumulative Buckets",
-          "transformations": [
-            {
-              "id": "renameByRegex",
-              "options": {
-                "regex": "Value #(.*)",
-                "renamePattern": "$1"
-              }
-            }
-          ],
-          "type": "bargauge"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 38,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "normal"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "bytes"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 7,
-            "w": 24,
-            "x": 0,
-            "y": 39
-          },
-          "id": 123,
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "mimir_ds"
-              },
-              "editorMode": "code",
-              "expr": "sum(increase(loki_total_bytes_fetched{cluster=\"${cluster}\", exported_namespace=\"${namespace}\",}[$__range]) - increase(loki_cache_chunk_bytes_fetched{cluster=\"${cluster}\", exported_namespace=\"${namespace}\",}[$__range]) -  increase(loki_ingester_chunk_decompressed_bytes_fetched{cluster=\"${cluster}\", exported_namespace=\"${namespace}\",}[$__range]) - increase(loki_ingester_chunk_head_bytes_fetched{cluster=\"${cluster}\", exported_namespace=\"${namespace}\",}[$__range]))",
-              "instant": false,
-              "legendFormat": "Bucket",
-              "range": true,
-              "refId": "A"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "expr": "sum(increase(loki_cache_chunk_bytes_fetched{cluster=\"${cluster}\", exported_namespace=\"${namespace}\",}[$__range]))",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "Cache",
-              "range": true,
-              "refId": "B"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "expr": "sum(increase(loki_ingester_chunk_decompressed_bytes_fetched{cluster=\"${cluster}\", exported_namespace=\"${namespace}\",}[$__range]) + increase(loki_ingester_chunk_head_bytes_fetched{cluster=\"${cluster}\", exported_namespace=\"${namespace}\",}[$__range]))",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "Ingester",
-              "range": true,
-              "refId": "C"
-            }
-          ],
-          "title": "Downloaded Chunks",
-          "type": "timeseries"
-        }
-      ],
+      "panels": [],
       "targets": [
         {
           "datasource": {
@@ -4920,6 +3792,1128 @@
       "type": "row"
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "uid": "$datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 6
+      },
+      "hiddenSeries": false,
+      "id": 102,
+      "interval": "1m",
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": [],
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "panels": [],
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "De-Dupe Ratio",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": {
+            "uid": "$datasource"
+          },
+          "expr": "sum(rate(loki_ingester_chunks_flushed_total{cluster=\"$cluster\",job=~\"($namespace)/(.*ingester.*|(loki|enterprise-logs)-write|loki-single-binary)\"}[$__rate_interval]))",
+          "interval": "",
+          "legendFormat": "Chunks",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "uid": "$datasource"
+          },
+          "expr": "sum(increase(loki_chunk_store_deduped_chunks_total{cluster=\"$cluster\", job=~\"($namespace)/(.*ingester.*|(loki|enterprise-logs)-write|loki-single-binary)\"}[$__rate_interval]))/sum(increase(loki_ingester_chunks_flushed_total{cluster=\"$cluster\", job=~\"($namespace)/(.*ingester.*|(loki|enterprise-logs)-write|loki-single-binary)\"}[$__rate_interval])) < 1",
+          "interval": "",
+          "legendFormat": "De-Dupe Ratio",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "Chunks Flushed/Sec",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "timeseries",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        },
+        {
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "cards": {},
+      "color": {
+        "cardColor": "#b4ff00",
+        "colorScale": "sqrt",
+        "colorScheme": "interpolateSpectral",
+        "exponent": 0.5,
+        "mode": "spectrum"
+      },
+      "dataFormat": "tsbuckets",
+      "datasource": {
+        "uid": "$datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "scaleDistribution": {
+              "type": "linear"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 6
+      },
+      "heatmap": {},
+      "hideZeroBuckets": false,
+      "highlightCards": true,
+      "id": 100,
+      "interval": "1m",
+      "legend": {
+        "show": true
+      },
+      "options": {
+        "calculate": false,
+        "calculation": {},
+        "cellGap": 2,
+        "cellValues": {},
+        "color": {
+          "exponent": 0.5,
+          "fill": "#b4ff00",
+          "mode": "scheme",
+          "reverse": false,
+          "scale": "exponential",
+          "scheme": "Spectral",
+          "steps": 128
+        },
+        "exemplars": {
+          "color": "rgba(255,0,255,0.7)"
+        },
+        "filterValues": {
+          "le": 1e-9
+        },
+        "legend": {
+          "show": true
+        },
+        "rowsFrame": {
+          "layout": "auto"
+        },
+        "showValue": "never",
+        "tooltip": {
+          "mode": "single",
+          "showColorScale": false,
+          "yHistogram": false
+        },
+        "yAxis": {
+          "axisPlacement": "left",
+          "decimals": 0,
+          "reverse": false,
+          "unit": "bytes"
+        }
+      },
+      "panels": [],
+      "pluginVersion": "10.4.2",
+      "reverseYBuckets": false,
+      "targets": [
+        {
+          "datasource": {
+            "uid": "$datasource"
+          },
+          "expr": "sum(rate(loki_ingester_chunk_size_bytes_bucket{cluster=\"$cluster\",job=~\"($namespace)/(.*ingester.*|(loki|enterprise-logs)-write|loki-single-binary)\"}[$__rate_interval])) by (le)",
+          "format": "heatmap",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{ le }}",
+          "refId": "A"
+        }
+      ],
+      "title": "Chunk Size Bytes",
+      "tooltip": {
+        "show": true,
+        "showHistogram": false
+      },
+      "type": "heatmap",
+      "xAxis": {
+        "show": true
+      },
+      "yAxis": {
+        "decimals": 0,
+        "format": "bytes",
+        "logBase": 1,
+        "show": true
+      },
+      "yBucketBound": "auto"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "uid": "$datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "fill": 7,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 14
+      },
+      "hiddenSeries": false,
+      "id": 96,
+      "interval": "1m",
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": [],
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "panels": [],
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": {
+            "uid": "$datasource"
+          },
+          "expr": "sum by(reason) (rate(loki_ingester_chunks_flushed_total{cluster=~\"$cluster\",job=~\"($namespace)/(.*ingester.*|(loki|enterprise-logs)-write|loki-single-binary)\", namespace=~\"$namespace\"}[$__rate_interval])) / ignoring(reason) group_left sum(rate(loki_ingester_chunks_flushed_total{cluster=~\"$cluster\",job=~\"($namespace)/(.*ingester.*|(loki|enterprise-logs)-write|loki-single-binary)\", namespace=~\"$namespace\"}[$__rate_interval]))",
+          "interval": "",
+          "legendFormat": "{{ reason }}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "Chunk Flush Reason %",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "timeseries",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percentunit",
+          "logBase": 1,
+          "max": "1",
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "cards": {},
+      "color": {
+        "cardColor": "#b4ff00",
+        "colorScale": "sqrt",
+        "colorScheme": "interpolateSpectral",
+        "exponent": 0.5,
+        "mode": "spectrum"
+      },
+      "dataFormat": "tsbuckets",
+      "datasource": {
+        "uid": "$datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "scaleDistribution": {
+              "type": "linear"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 14
+      },
+      "heatmap": {},
+      "hideZeroBuckets": true,
+      "highlightCards": true,
+      "id": 98,
+      "interval": "1m",
+      "legend": {
+        "show": true
+      },
+      "options": {
+        "calculate": false,
+        "calculation": {},
+        "cellGap": 2,
+        "cellValues": {},
+        "color": {
+          "exponent": 0.5,
+          "fill": "#b4ff00",
+          "mode": "scheme",
+          "reverse": false,
+          "scale": "exponential",
+          "scheme": "Spectral",
+          "steps": 128
+        },
+        "exemplars": {
+          "color": "rgba(255,0,255,0.7)"
+        },
+        "filterValues": {
+          "le": 1e-9
+        },
+        "legend": {
+          "show": true
+        },
+        "rowsFrame": {
+          "layout": "auto"
+        },
+        "showValue": "never",
+        "tooltip": {
+          "mode": "single",
+          "showColorScale": false,
+          "yHistogram": false
+        },
+        "yAxis": {
+          "axisPlacement": "left",
+          "decimals": 0,
+          "reverse": false,
+          "unit": "percentunit"
+        }
+      },
+      "panels": [],
+      "pluginVersion": "10.4.2",
+      "reverseYBuckets": false,
+      "targets": [
+        {
+          "datasource": {
+            "uid": "$datasource"
+          },
+          "expr": "sum by (le) (rate(loki_ingester_chunk_utilization_bucket{cluster=\"$cluster\", job=~\"($namespace)/(.*ingester|(loki|enterprise-logs)-write|loki-single-binary)\"}[$__rate_interval]))",
+          "format": "heatmap",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{ le }}",
+          "refId": "A"
+        }
+      ],
+      "title": "Chunk Utilization",
+      "tooltip": {
+        "show": true,
+        "showHistogram": false
+      },
+      "type": "heatmap",
+      "xAxis": {
+        "show": true
+      },
+      "yAxis": {
+        "decimals": 0,
+        "format": "percentunit",
+        "logBase": 1,
+        "show": true
+      },
+      "yBucketBound": "auto"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "decimals": 2,
+          "fieldMinMax": true,
+          "mappings": [],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 23
+      },
+      "id": 120,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<3h\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "<3h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<12h\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<12h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<1d\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<1d"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<2d\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<2d"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<3d\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<3d"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<4d\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<4d"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<5d\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<5d"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<1w\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<1w"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<2w\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<2w"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<1mo\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<1mo"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\">1mo\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": ">1mo"
+        }
+      ],
+      "title": "Chunk Cache Request Ratio by Cumulative Buckets",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "Value #(.*)",
+            "renamePattern": "$1"
+          }
+        }
+      ],
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "decimals": 2,
+          "fieldMinMax": true,
+          "mappings": [],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 31
+      },
+      "id": 121,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<3h\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "<3h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<12h\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<12h"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<1d\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<1d"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<2d\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<2d"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<3d\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<3d"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<4d\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<4d"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<5d\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<5d"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<1w\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<1w"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<2w\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<2w"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\"<1mo\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": "<1mo"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(loki_cache_chunk_hit_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\", bucket=\">1mo\"}[$__range])) / sum(increase(loki_cache_chunk_req_over_time{cluster=\"${cluster}\", exported_namespace=\"${namespace}\"}[$__range]))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{bucket}}",
+          "range": false,
+          "refId": ">1mo"
+        }
+      ],
+      "title": "Chunk Cache Hit Ratio by Cumulative Buckets",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "Value #(.*)",
+            "renamePattern": "$1"
+          }
+        }
+      ],
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 38,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 39
+      },
+      "id": 123,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir_ds"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(loki_cache_chunk_bytes_stored{cluster=\"${cluster}\", exported_namespace=\"${namespace}\",}[$__range]))",
+          "instant": false,
+          "legendFormat": "Bucket",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(loki_cache_chunk_bytes_fetched{cluster=\"${cluster}\", exported_namespace=\"${namespace}\",}[$__range]))",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Cache",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(loki_ingester_chunk_decompressed_bytes_fetched{cluster=\"${cluster}\", exported_namespace=\"${namespace}\",}[$__range]) + increase(loki_ingester_chunk_head_bytes_fetched{cluster=\"${cluster}\", exported_namespace=\"${namespace}\",}[$__range]))",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Ingester",
+          "range": true,
+          "refId": "C"
+        }
+      ],
+      "title": "Downloaded Chunks",
+      "type": "timeseries"
+    },
+    {
       "collapsed": true,
       "datasource": {
         "type": "datasource",
@@ -4929,7 +4923,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 6
+        "y": 46
       },
       "id": 64,
       "panels": [
@@ -5334,7 +5328,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 7
+        "y": 47
       },
       "id": 52,
       "panels": [
@@ -5556,7 +5550,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 8
+        "y": 48
       },
       "id": 57,
       "panels": [
@@ -5783,7 +5777,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 49
       },
       "id": 60,
       "panels": [
@@ -6005,7 +5999,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 10
+        "y": 50
       },
       "id": 78,
       "panels": [
@@ -6225,7 +6219,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 11
+        "y": 51
       },
       "id": 117,
       "panels": [
@@ -6445,7 +6439,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 12
+        "y": 52
       },
       "id": 114,
       "panels": [
@@ -6658,9 +6652,7 @@
   ],
   "refresh": "",
   "schemaVersion": 39,
-  "tags": [
-    "loki"
-  ],
+  "tags": ["loki"],
   "templating": {
     "list": [
       {
@@ -6727,9 +6719,9 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "logging",
-          "value": "logging"
+          "selected": true,
+          "text": "monitoring",
+          "value": "monitoring"
         },
         "datasource": {
           "type": "datasource",
@@ -6771,21 +6763,11 @@
       "2h",
       "1d"
     ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
+    "time_options": ["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]
   },
   "timezone": "utc",
   "title": "Loki / Operational",
   "uid": "operational",
-  "version": 4,
+  "version": 1,
   "weekStart": ""
 }
